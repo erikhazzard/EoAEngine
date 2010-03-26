@@ -1,0 +1,112 @@
+/*==========================================================================
+ *
+ *                      End of Ages
+ *                      Main stylesheet
+ *
+ *==========================================================================*/
+/*==========================================================================
+ *
+ *  Base / Built In Element Overrides
+ *
+ *==========================================================================*/
+body, html {
+    background:#cdcdcd;
+    font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif !important;
+	margin:0;
+	padding:0;
+}
+
+a {
+    color:#336699;
+    font-weight:bold;
+    text-decoration:none;
+}
+a:hover {
+    color:#343434;
+}
+/*==========================================================================
+ *
+ *  Site Layout Divs
+ *
+ *==========================================================================*/
+#site_wrapper {
+    height:100%;
+    position:relative;
+    width:100%;
+}
+    #site {
+        background:#ffffff;
+        margin:0 auto;
+        width:92%;
+    }
+/*---------------------------------
+ *
+ * Header
+ *
+ * --------------------------------*/
+#header_wrapper{
+    height:125px;
+    position:relative;
+}
+    #header {
+        padding:0 10px;
+        position:relative;
+    }
+    /*---------------------------------
+     * Logo
+     * --------------------------------*/
+    #logo {
+        font-size:1.2em;
+        font-weight:bold;
+        text-shadow:1px 1px #787878;
+    }
+    /*---------------------------------
+     * Login Area
+     * --------------------------------*/
+    #login_wrapper {
+        border:1px solid #343434;
+        font-size:.9em;
+        height:100px;
+        position:absolute;
+        right:10px;
+        top:0;
+        width:250px;
+        z-index:10;
+    }
+        #login {
+            padding:2px;
+        }
+            #login_password_wrapper, #login_username_wrapper {
+                position:relative;
+            }
+                #login_password_placeholder {
+                    color:#ababab;
+                    font-size:.9em;
+                    left:0;
+                    position:absolute;
+                    top:0;
+                }
+    /*---------------------------------
+     * Links
+     * --------------------------------*/
+     
+/*---------------------------------
+ *
+ * Content
+ *
+ * --------------------------------*/    
+
+
+/*---------------------------------
+ *
+ * Footer
+ *
+ * --------------------------------*/    
+/*==========================================================================
+ *
+ *  Site Layout Classes
+ *
+ *==========================================================================*/
+.clear {
+    clear:both;
+}

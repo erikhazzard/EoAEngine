@@ -1,0 +1,51 @@
+{% extends 'eoa/base.html' %}
+<!-- ====================================================================== 
+Head 
+=========================================================================== -->
+
+{% block extra_head_js %}
+    <!-- EoA Library Functions  -->
+	<script src='/eoa/static/js/eoa_libraries/classes.js' type='text/javascript'></script>
+    <!-- Game Functions -->
+	<script src='/eoa/static/js/main.js' type='text/javascript'></script>
+{% endblock extra_head_js%}
+<!-- ====================================================================== 
+Body 
+=========================================================================== -->
+
+{% block site_container %}
+<div id='site_wrapper'>
+    <div id='world_container'>
+        <div id='zone_container'></div>
+        <div id='camera_container'></div>
+    </div>
+    <div id="chat_container">
+        <div id="chat_incoming"><div class='chat_line'></div></div>
+        <div id="chat_outgoing"><input type='text' value='' id='chat_text' /><input type='button' value='Send' id='chat_submit'/></div>
+    </div>
+    <!-- Logged in users -->
+    <div id="status_wrapper">
+        <div id="logged_in_users"></div>
+    </div>
+
+    <!--Login Area-->
+    <div id='login_wrapper'>
+        Logged in as {{ user.username }}
+        <br />
+        <a href='{% url account_logout %}' title='Logout' rel='nofollow'>Logout</a>
+    </div>
+
+    <!-- Dev functions -->
+    <div id="dev_functions">
+        <input type='button' value='Start Heartbeat' id='start_heartbeat' />
+        <br />
+        <input type='button' value='Stop Heartbeat' id='stop_heartbeat' />
+        <br />
+        <br />
+        <input type='button' value='Start Chat Heartbeat' id='start_chat_heartbeat' />
+        <br />
+        <input type='button' value='Stop Chat Heartbeat' id='stop_chat_heartbeat' />
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,260 @@
+/*==========================================================================
+ *
+ *                      End of Ages
+ *                      Game Stylesheet
+ *
+ *==========================================================================*/
+/*==========================================================================
+ *
+ *  Site Layout Divs
+ *
+ *==========================================================================*/
+  /*---------------------------------
+ * Game Container
+ * --------------------------------*/
+#game_container {
+    position:relative;
+    width:100%;
+}
+ /*---------------------------------
+ * Left Side Bar
+ * --------------------------------*/
+ #game_left_sidebar_wrapper {
+    background:#f0f0f0;
+    float:left;
+    position:relative;
+    width:20%;
+ }
+  /*---------------------------------
+ * World Wrapper Div
+ * --------------------------------*/
+#game_world_wrapper {
+    background:#cdcdcd;
+    border:1px solid #343434;
+    float:left;
+    margin:0 auto;
+    position:relative;
+    text-align:center;
+    width:54%;
+}
+    #game_world {
+        border:2px solid #000000;
+        height:432px;
+        margin:0 auto;
+        overflow:hidden;
+        position:relative;
+        width:432px;
+    }
+/*---------------------------------
+ * Right Side Bar
+ * --------------------------------*/
+#game_right_sidebar_wrapper{
+    float:left;
+    position:relative;
+    width:25%;
+}
+
+/*==========================================================================
+ *
+ *  Game Elements
+ *
+ *==========================================================================*/
+/*---------------------------------
+ *
+ * Game World Area
+ *
+ * --------------------------------*/
+    #zone_container {
+        /*The background is a map passed in.  This will be
+            procedurally generated*/
+        background:#225577 url(/tower_d/static/images/zones/map_1.png);
+        height:100%;
+        left:0;
+        position:absolute;
+        top:0;
+        width:100%;
+    }
+        /*---------------------------------
+         *
+         * Grid and Cells
+         *
+         * --------------------------------*/
+        /*This grid container will show the grid overlaied on the map*/
+        #grid_container {
+            height:432px;
+            position:relative;
+            width:432px;
+        }
+            /*Cells*/
+            .grid_cell {
+                background: rgba(50,100,150,.2);
+                _background: #225588;
+                border-bottom: 1px solid rgba(0,0,0,.2);
+                border-right: 1px solid rgba(0,0,0,.2);
+                _border-bottom: 1px solid #232323;
+                _border-right: 1px solid #232323;
+                position:absolute;
+            }
+            .grid_cell_hidden {
+                background: none;
+                border: none;
+            }
+            .grid_cell_hover_value_0 {
+                background: rgba(255,0,0,.8) !important;
+                _background: #dd2222;
+            }
+            .grid_cell_hover_value_1 {
+                background: rgba(255,255,255,.8) !important;
+                _background: #f0f0f0;
+                cursor:pointer;
+            }
+            .grid_cell_show_radius {
+                background: rgba(50,255,50,.8);
+                _backround: #22ee22;
+            }
+
+/*---------------------------------
+ *
+ * Chat
+ *
+ * --------------------------------*/
+#chat_container {
+    border:1px solid #232323;
+    display:none;
+    font-size:.9em;
+    height:350px;
+    position:absolute;
+    right:10px;
+    top:10px;
+    width:350px;
+}
+    #chat_incoming {
+        height:325px;
+        left:0px;
+        position:relative;
+        overflow:scroll;
+        top:0px;
+    }
+    #chat_outgoing {
+        border-top:1px solid #343434;
+        bottom:0px;
+        height:25px;
+        position:absolute;
+        width:100%;
+    }
+    #chat_text {
+        width:250px;
+    }
+
+    /*Chat box (received messages)*/
+    .chat_author {
+        font-weight:bold;
+    }
+        
+/*==========================================================================
+ *
+ * Player 
+ *
+ *==========================================================================*/
+#player_inventory_wrapper {
+    border:1px solid #343434;
+    margin:0 0 10px 0;
+}
+
+/*==========================================================================
+ *
+ *  Creeps
+ *
+ *==========================================================================*/
+.creep_base {
+    background:#000000;
+    border:1px solid #ffffff;
+    cursor:pointer;
+    height:0;
+    left:0px;
+    position:absolute;
+    top:0px;
+    width:0;
+    z-index:1337;
+}
+
+/*==========================================================================
+ *
+ *  Towers
+ *
+ *==========================================================================*/
+/*---------------------------------
+ *
+ * Tower Elements
+ *
+ * --------------------------------*/
+ .tower_base {
+    background-color:#000000;
+    border:1px solid #ffffff;
+    cursor:pointer;
+    height:0;
+    left:0;
+    position:absolute;
+    top:0;
+    width:0;
+}
+    /*-----------------
+     * Tower 'Bullets'
+     * ----------------*/
+    .tower_bullet_base {
+        background:#232323;
+        border:1px solid #efefef;
+        height:5px;
+        position:absolute;
+        width:5px;
+        z-index:2000;
+    }
+/*---------------------------------
+ *
+ * Tower / Creep (Selection)
+ *  HTML Stuff
+ *
+ * --------------------------------*/
+#tower_menu_wrapper {
+    margin:0 0 10px 0;
+}
+
+/* Tower purchase button*/
+#tower_purchase_button {
+    cursor:pointer;
+}
+
+/*The tower that the user has clicked on*/
+#selection_wrapper {
+    position:relative;
+}
+#tower_selected_wrapper, #creep_selected_wrapper{
+    border:1px solid #343434;
+    position:relative;
+    margin:10px 0 0 0;
+    width:100%;
+}
+#creep_selected_wrapper {
+    position:absolute;
+    top:0;
+}
+    #tower_selected_name {
+        border-bottom:1px solid #343434;
+        font-size:1.1em;
+        font-weight:bold;
+        text-align:center;
+    }
+    #tower_selected_base {
+        border-bottom:1px solid #343434;
+        font-weight:bold;
+    }
+    #tower__selected_elements {
+        border-bottom:1px solid #343434;
+        font-weight:bold;
+    }
+    
+/*==========================================================================
+ *
+ *  Game Layout Classes
+ *
+ *==========================================================================*/

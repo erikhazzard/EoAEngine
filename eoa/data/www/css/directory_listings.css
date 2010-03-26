@@ -1,0 +1,48 @@
+body, html {
+    background:#eeeeee;
+    font-family: "Lucida Grande", Arial, Verdana, sans-serif !important;
+    margin:0;
+    padding:0;
+}
+h1 {
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    background:#787878;
+    color:#f0f0f0;
+    padding:3px;
+    text-shadow:0 1px 0 #000000;
+}
+
+/*===============
+ * Pre Elements
+ * ============== */
+pre {
+    background:#f6f6f6;
+    border-bottom:1px solid #DDDDDD;
+    border-top:1px solid #DDDDDD;
+    padding:0 10px 10px 10px;
+}
+pre a, a {
+    border:1px solid #f6f6f6;
+    color:#225588;
+    padding:1px 2px;
+    text-decoration:none;
+}
+pre a:hover, a:hover {
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    background:#dddddd;
+    border:1px solid #bcbcbc;
+    color:#343434 !important;
+
+}
+pre a:visited, a:visited {
+    color:#225588;
+}
+pre hr {
+    background:#cdcdcd;
+    border:none;
+    height:1px;
+}
+

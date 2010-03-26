@@ -1,0 +1,156 @@
+{% extends 'tower_d/base.html' %}
+<!-- ====================================================================== 
+Head 
+=========================================================================== -->
+
+{% block extra_head_js %}
+    <!-- Tower D Library Functions  -->
+	<script src='/tower_d/static/js/tower_d_libraries/classes.js' 
+        type='text/javascript'></script>
+    <!-- Game Functions -->
+	<script src='/tower_d/static/js/main.js' type='text/javascript'></script>
+{% endblock extra_head_js%}
+
+{% block extra_head_css %}
+    <link href='/tower_d/static/css/game_styles.css' type='text/css'
+        rel='stylesheet' />
+{% endblock %}
+
+<!-- ====================================================================== 
+Body 
+=========================================================================== -->
+{% block body_content %}
+<div id='game_container'>
+    <!-- ========= LEFT SIDE ============================================= -->
+    <!-- List the players in the game -->
+    <div id='game_left_sidebar_wrapper'>
+        <div id='game_left_sidebar'>
+            Players
+        </div>
+    </div>
+    <!-- ========= LEFT SIDE END ========================================= -->
+    
+    <!-- ========= GAME DIV ============================================== -->
+    <div id='game_world_wrapper'>
+        <div id='game_world'>
+            <div id='zone_container'></div>
+            <div id='grid_container'></div>
+        </div>
+    </div>
+    <!-- ========= GAME DIV END ========================================== -->
+    
+    <!-- ========= RIGHT SIDE ============================================ -->
+    <div id='game_right_sidebar_wrapper'>
+        <div id='game_right_sidebar'>
+            <!-- Inventory -->
+            <div id='player_inventory_wrapper'>
+                Health: <span id='player_health_amount'></span>
+                <br />
+                <br />
+                Gold: <span id='inventory_gold_amount'></span>
+                <br />
+                Elemental Points: <span id='inventory_element_points_amount'>
+                                        0
+                                    </span>
+            </div>
+
+            <!-- Tower Menu -->
+            <div id='tower_menu_wrapper'>
+                <div id='tower_menu_purchase_tower'>
+                    <input type='button' value='Build a tower' 
+                                id='tower_purchase_button' />
+                    <input type='button' value='Toggle grid'
+                                id='toggle_grid' />
+                </div>
+
+
+                <!-- ========= SELECTIONS ============================= -->
+                <!-- Tower Selected -->
+                <div id='selection_wrapper'>
+                    <div id='tower_selected_wrapper' class='hidden_element'>
+                        <div id='tower_selected_name'>
+                            Tower <span id='tower_obj_id'>0</span>
+                        </div>
+                        <div id='tower_selected_base'>Base</div>
+                        <div id='tower_damage_container'>
+                            Damage: <span id='tower_obj_damage'></span>
+                            <input id='tower_button_upgrade_damage' type='button' 
+                                value='Upgrade: 10 Gold' /> 
+                        </div>
+                        <div id='tower_delay_container'>
+                            Delay: <span id='tower_obj_delay'></span>
+                            <input id='tower_button_upgrade_delay' type='button' 
+                                value='Upgrade: 10 Gold' /> 
+                        </div>
+                        <div id='tower_range_container'>
+                            Range: <span id='tower_obj_range'></span>
+                            <input id='tower_button_upgrade_range' type='button' 
+                                value='Upgrade: 10 Gold' /> 
+                        </div>
+                        <br />
+                        <div id='tower_selected_elements'>Elements</div>
+                        <div id='tower_elemental_dark_container'>
+                            Dark: <span id='tower_obj_elemental_dark'></span>
+                            <input id='tower_button_upgrade_elemental_dark' 
+                                type='button' value='Upgrade: 10 Gold' />
+                        </div>
+                        <div id='tower_elemental_earth_elemental'>
+                            Earth: <span id='tower_obj_elemental_earth'></span>
+                            <input id='tower_button_upgrade_elemental_earth' 
+                                type='button' value='Upgrade: 10 Gold' />
+                        </div>
+                        <div id='tower_elemental_fire_elemental'>
+                            Fire: <span id='tower_obj_elemental_fire'></span>
+                            <input id='tower_button_upgrade_elemental_fire' 
+                                type='button' value='Upgrade: 10 Gold' />
+                        </div>
+                        <div id='tower_elemental_light_elemental'>
+                            Light: <span id='tower_obj_elemental_light'></span>
+                            <input id='tower_button_upgrade_elemental_light' 
+                                type='button' value='Upgrade: 10 Gold' />
+                        </div>
+                        <div id='tower_elemental_water_elemental'>
+                            Water: <span id='tower_obj_elemental_water'></span>
+                            <input id='tower_button_upgrade_elemental_water' 
+                                type='button' value='Upgrade: 10 Gold' />
+                        </div>
+                        <div id='tower_elemental_wind_elemental'>
+                            Wind: <span id='tower_obj_elemental_wind'></span>
+                            <input id='tower_button_upgrade_elemental_wind' 
+                                type='button' value='Upgrade: 10 Gold' />
+                        </div>
+                    </div>
+            
+                    <!-- Creep Selected -->
+                    <div id='creep_selected_wrapper' class='hidden_element'>
+                        <div id='creep_selected'>
+                            <div id='creep_selected_name'></div>
+                            Health<div id='creep_selected_health'></div>
+                            Power<div id='creep_selected_power'></div>
+                            Armor<div id='creep_selected_armor_class'></div>
+                            Move Speed<div id='creep_selected_move_speed'></div>
+                            Active Effects<div id='creep_selected_active_effects'></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========= SELECTIONS END ========================= -->
+
+            </div>
+        </div>
+        <div class='clear'></div>
+        <div id='game_function_wrapper'>
+            <!-- Dev functions -->
+            <div id='dev_functions'>
+                <strong>dev functions</strong>
+                <br />
+                <input type='button' value='Send wave' id='send_wave' />
+                <input type='button' value='Give 9999 Gold' id='give_gold' 
+                    onclick='player.options.gold += 9999;' />
+            </div>
+        </div>
+    </div>
+    <div class='clear'></div>
+    <!-- ========= RIGHT SIDE END ======================================== -->
+    
+</div>
+{% endblock body_content %}
