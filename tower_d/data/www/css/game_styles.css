@@ -109,7 +109,7 @@
                 cursor:pointer;
             }
             .grid_cell_show_radius {
-                background: rgba(50,255,50,.8);
+                background: rgba(50,255,50,.5);
                 _backround: #22ee22;
             }
 
@@ -177,6 +177,27 @@
     width:0;
     z-index:1337;
 }
+/*---------------------------------
+ *
+ * Elemental Effects
+ *
+ * --------------------------------*/
+    .effect_icon {
+        display:block;
+        float:left;
+        height:20px;
+        width:20px;
+    }
+        .effect_icon_dark {
+            background:url('/tower_d/static/images/icons/dark_icon.png');
+        }
+        .effect_icon_earth {
+            background:url('/tower_d/static/images/icons/earth_icon.png');
+        }
+        .effect_icon_wind {
+            background:url('/tower_d/static/images/icons/dark_icon.png');
+        }
+
 
 /*==========================================================================
  *

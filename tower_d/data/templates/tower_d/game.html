@@ -8,7 +8,7 @@ Head
 	<script src='/tower_d/static/js/tower_d_libraries/classes.js' 
         type='text/javascript'></script>
     <!-- Game Functions -->
-	<script src='/tower_d/static/js/main.js' type='text/javascript'></script>
+	<script src='/tower_d/static/js/game.js' type='text/javascript'></script>
 {% endblock extra_head_js%}
 
 {% block extra_head_css %}
@@ -58,7 +58,8 @@ Body
             <div id='tower_menu_wrapper'>
                 <div id='tower_menu_purchase_tower'>
                     <input type='button' value='Build a tower' 
-                                id='tower_purchase_button' />
+                                id='tower_purchase_button'
+                                title='Build a tower' />
                     <input type='button' value='Toggle grid'
                                 id='toggle_grid' />
                 </div>
@@ -75,7 +76,7 @@ Body
                         <div id='tower_damage_container'>
                             Damage: <span id='tower_obj_damage'></span>
                             <input id='tower_button_upgrade_damage' type='button' 
-                                value='Upgrade: 10 Gold' /> 
+                                value='Upgrade: 10 Gold'/> 
                         </div>
                         <div id='tower_delay_container'>
                             Delay: <span id='tower_obj_delay'></span>
@@ -119,6 +120,13 @@ Body
                             <input id='tower_button_upgrade_elemental_wind' 
                                 type='button' value='Upgrade: 10 Gold' />
                         </div>
+        
+                        <hr />
+                        <!-- Sell Tower -->
+                        <div id='tower_sell_wrapper'>
+                            <input  id='tower_button_sell' type='button'
+                                value='Sell Tower' />
+                        </div>
                     </div>
             
                     <!-- Creep Selected -->
@@ -130,6 +138,7 @@ Body
                             Armor<div id='creep_selected_armor_class'></div>
                             Move Speed<div id='creep_selected_move_speed'></div>
                             Active Effects<div id='creep_selected_active_effects'></div>
+                            <div class='clear'></div>
                         </div>
                     </div>
                 </div>

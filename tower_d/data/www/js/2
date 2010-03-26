@@ -9,15 +9,8 @@ var Game = new Class({
     
     //Set the attributes / options
     options: {
-        //Base tower cost
-        tower_base_cost: 10,
         //Resell value of towers (percentage)
-        tower_resell_value: .75,
-
-        //Creep values
-        creep_value_base: 5,
-        creep_value_modifier: .5
-
+        tower_resell_value: .75
     },
 
     /*--------------------------------
@@ -26,14 +19,6 @@ var Game = new Class({
     initialize: function(options){
         //set the object's attributes / options
         this.setOptions(options);
-    },
-
-    get_creep_value: function(level){
-        //Returns a gold cost for the creep based on the
-        //  level passed in
-        var creep_value = this.options.creep_value_base + Math.round(
-                            this.options.creep_value_modifier * level);
-        return creep_value;
     }
 })
 
@@ -327,19 +312,18 @@ var Cell = new Class({
             /*We can place a tower on the cell, so try to*/
 
             //see if the Player_Object has enough money
-            if(Player_Object.options.gold >= Game_Object.options.tower_base_cost){
+            //TODO: replace 10 with the base tower cost
+            if(Player_Object.options.gold >= 10){
                 //TODO: make request to server to see if the Player_Object gold matches on server
 
                 //create a tower object
-                var tower = new Tower({'pos_x': this.options.pos_x, 
-                        'pos_y': this.options.pos_y});
+                var tower = new Tower({'pos_x': this.options.pos_x, 'pos_y': this.options.pos_y});
 
                 //decrease the Player_Object's gold by the base tower cost amount
-                Player_Object.options.gold -= Game_Object.options.tower_base_cost;
+                Player_Object.options.gold -= 10;
 
                 //update the HTML element that shows gold amount
-                $(Player_Object.options.html_gold).set('html', 
-                        Player_Object.options.gold);
+                $(Player_Object.options.html_gold).set('html', Player_Object.options.gold);
             }
 
         //get out of build mode
@@ -361,7 +345,7 @@ var Cell = new Class({
         this.options.cell_value = 0;
     },
 
-    remove_tower: function(){
+    remove_tower: function(object_reference){
         //remove_tower: remove an object reference
         this.options.contained_tower = null;
 
@@ -426,7 +410,6 @@ var Tower = new Class({
             html_elemental_water_upgrade: 'tower_button_upgrade_elemental_water',
             html_elemental_wind: 'tower_obj_elemental_wind',
             html_elemental_wind_upgrade: 'tower_button_upgrade_elemental_wind',
-        html_sell_button: 'tower_button_sell',
 
         //Position
         pos_x: 0,
@@ -533,7 +516,7 @@ var Tower = new Class({
 
         //Set the value of the array index
         this.options.player_owned_tower_index =
-            Player_Object_reference.options.towers_owned.length - 1;
+            Player_Object_reference.options.towers_owned.length
             
         //set the cell reference
         this.options.cell_reference = Zone_Object.options.cell_objects_grid[i][j];
@@ -547,7 +530,7 @@ var Tower = new Class({
 
         //set the html element id
         this.options.element_id = 'Tower ' 
-            + Player_Object.options.towers_owned.length;
+            + this.options.Player_Object_reference.options.towers_owned.length;
        
         //Set element options
         this.options.element =  new Element('div', {
@@ -614,7 +597,9 @@ var Tower = new Class({
         $(this.options.html_elemental_wind).set('html', 
                                 this.options.elementals['wind']);
 
-        if(Player_Object.options.selected_tower === this){
+        //For now, check if the radius is visible (denotes a selected tower)
+        //  use a better method though...
+        if(this.options.radius_visible === true){
             $(Player_Object.options.html_tower_selected_wrapper).setStyle('opacity',1);
         }
         else{
@@ -896,20 +881,16 @@ var Tower = new Class({
     calc_upgrade_cost: function(type, level){
         //Return the cost to upgrade based on the type passed in
         if(type === 'damage'){
-            return Game_Object.options.tower_base_cost
-                    + Math.round(Math.pow(1.3, level));
+            return 10 + Math.round(Math.pow(1.3, level));
         }
         if(type === 'delay'){
-            return Game_Object.options.tower_base_cost
-                + Math.round(Math.pow(1.3, level));
+            return 10 + Math.round(Math.pow(1.3, level));
         }
         if(type === 'range'){
-            return Game_Object.options.tower_base_cost
-                + Math.round(Math.pow(2.3, level));
+            return 10 + Math.round(Math.pow(2.3, level));
         }
         else{
-            return Game_Object.options.tower_base_cost
-                + Math.round(Math.pow(1.5, level));
+            return 10 + Math.round(Math.pow(1.5, level));
         }
     },
     
@@ -1196,11 +1177,10 @@ var Tower = new Class({
                                     elemental_value_dark / 10);
                 //Damage per tick
                 var elemental_dark_tick_damage = Math.ceil(
-                                    elemental_value_dark * .2) + 
-                                    this.options.damage * .2;
+                                    elemental_value_dark / 5);
                 //Time between ticks
                 var elemental_dark_tick_delay =  5 - Math.log(
-                                    1 + (elemental_value_dark * .2));
+                                    1 + (elemental_value_dark / 5));
 
                 that.options.elementals_effects['dark']['tick_number'] = 
                     elemental_dark_tick_number;
@@ -1517,12 +1497,12 @@ var Tower = new Class({
         var tower_value = this.options.value;
         tower_value = tower_value * Game_Object.options.tower_resell_value;
         
-        //Give the player gold
-        Player_Object.options.gold += tower_value;
-        console.log(Player_Object.options.gold, tower_value);
-
         //Remove the tower
         this.destroy_tower();
+
+        //Give the player gold
+        Player_Object.options.gold += tower_value;
+
     },
 
     /*----------------
@@ -1533,25 +1513,11 @@ var Tower = new Class({
     destroy_tower: function(){
         //Removes tower from the game
         //Remove HTML element
-        $(this.options.element).dispose();
+        $(this.options.element).dispose()
 
         //Remove tower from player's tower owned list
-        Player_Object.options.towers_owned;
+        Player_Object.options.towers_owned
 
-        //Remove radius display
-        this.hide_radius_display();
-
-        //Unselect tower if it is selected
-        if(Player_Object.options.selected_tower === this){
-            if(Player_Object.options.selected_tower === this){
-                $(Player_Object.options.html_tower_selected_wrapper
-                        ).setStyle('opacity',0);
-                Player_Object.options.selected_tower = null;
-            }
-        }
-
-        //Remove cell from grid
-        this.options.cell_reference.remove_tower();
     }
 });
 
@@ -1618,9 +1584,6 @@ var Creep= new Class({
         element: {},
         element_id: null,
         add_to_map: true,
-
-        //Store the ID of the creep (increases on every wave)
-        creep_id: 0,
         
         //The direction the character is facing
         dir_facing: 'down',
@@ -1660,8 +1623,6 @@ var Creep= new Class({
             this.options.element_id = "creep_" + this.options.name + '_'
                                     + creep_list.length;
         }
-
-        this.options.creep_id = creep_list.length;
 
         //Set element options
         this.options.element =  new Element('div', {
@@ -1897,14 +1858,6 @@ var Creep= new Class({
             //We're done moving the creep, the chain for creep move is done
             that.options.move_chain.callChain();
         });
-        
-        /*:::::::::::::::::::::::::
-        //Update if creep is selected
-        //TODO: Remove for optimization?
-        *:::::::::::::::::::::::::*/
-        if(Player_Object.options.selected_creep === this){
-            this.update_html_active_effects();
-        }
 
         /*:::::::::::::::::::::::::
          *Send request to server
@@ -2012,11 +1965,11 @@ var Creep= new Class({
         //  an elemental type
         //TODO: some AC calculations 
         //Only take damage if the health is above 0
-        if(Player_Object.options.selected_creep === this){
-            this.select_creep();
-            this.update_html_active_effects();
-        }
         if(this.options.health > 0){
+            if(Player_Object.options.selected_creep === this){
+                this.select_creep();
+                this.update_html_active_effects();
+            }
             //Flash the creep
             this.options.element.highlight('#dd2222');
 
@@ -2050,18 +2003,14 @@ var Creep= new Class({
         Zone_Object.options.cell_objects_grid[i][j].options.contained_creeps.erase(this);
 
         //Give the Player_Object some money
-        Player_Object.options.gold += Game_Object.get_creep_value(
-                this.options.creep_id);
-
+        Player_Object.options.gold += 10;
         $(Player_Object.options.html_gold).highlight('#dddd22');
-        $(Player_Object.options.html_gold).set('html', 
-                Player_Object.options.gold);
+        $(Player_Object.options.html_gold).set('html', Player_Object.options.gold);
 
         //Remove creep from selection and update selection box
         if(Player_Object.options.selected_creep === this){
             Player_Object.options.selected_creep = null;
-            $(Player_Object.options.html_creep_selected_wrapper).setStyle(
-                'opacity',0);
+            $(Player_Object.options.html_creep_selected_wrapper).setStyle('opacity',0);
         }
     },
 
@@ -2153,16 +2102,5 @@ Player = new Class({
             $(this.options.html_gold).highlight('#dddd22') :
             $(this.options.html_gold).highlight('#22dddd');
 
-    },
-
-    update_selection: function(){
-        if(this.options.selected_tower !== null){
-            this.options.selected_tower.select_tower();
-            return;
-        }
-        if(this.options.selected_creep !== null){
-            this.options.selected_creep.select_creep();
-            return;
-        }
     }
 });

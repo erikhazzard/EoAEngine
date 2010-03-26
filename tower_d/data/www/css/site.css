@@ -110,3 +110,33 @@ a:hover {
 .clear {
     clear:both;
 }
+.tool_tip_class {
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    background:#343434;
+    padding:2px;
+    z-index:999999;
+}
+.tip-title {
+    border-bottom:1px solid #343434;
+    color:#6699cc;
+    display:block;
+    font-size:1.1em;
+    font-weight:bold;
+    margin:0 0 2px 0;
+    padding:0 0 2px 0;
+}
+.tool_tip_custom {
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    background:rgba(20,20,20,.8);
+    _background:#343434;
+    color:#efefef;
+    font-size:.8em;
+    height:75px;
+    padding:4px;
+    width:175px;
+    z-index:999999;
+}
