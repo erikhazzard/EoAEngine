@@ -335,7 +335,8 @@ var Cell = new Class({
                         'pos_y': this.options.pos_y});
 
                 //decrease the Player_Object's gold by the base tower cost amount
-                Player_Object.options.gold -= Game_Object.options.tower_base_cost;
+                Player_Object.update_gold(
+                        Game_Object.options.tower_base_cost);
 
                 //update the HTML element that shows gold amount
                 $(Player_Object.options.html_gold).set('html', 
@@ -936,6 +937,9 @@ Player = new Class({
         //Some Player_Object properties
         health: 20,
         gold: 100,
+
+        //Keep track of total amount of gold
+        accumlated_gold: 100,
         elemental_points: 0,
 
         //Store the mode the Player_Object is in
@@ -953,10 +957,10 @@ Player = new Class({
         html_creep_selected_wrapper: 'creep_selected_wrapper',
 
         //Stores a list of towers the Player_Object owns
-        towers_owned:[],
+        towers_owned: [],
 
         //Stores how many creeps were killed
-        creeps_killed:0
+        creeps_killed: 0
     },
 
     initialize: function(options, Player_Object){
@@ -969,6 +973,11 @@ Player = new Class({
     update_gold: function(amount){
         //Amount will usually be negative
         this.options.gold += amount;
+
+        //If the amount is positive, add it to the total gold count
+        if(amount > 0){
+            this.options.accumlated_gold += amount;
+        }
 
         //Update the gold text
         $(this.options.html_gold).set('html', this.options.gold);
