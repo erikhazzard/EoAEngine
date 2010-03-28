@@ -31,7 +31,26 @@ Body
     <!-- List the players in the game -->
     <div id='game_left_sidebar_wrapper'>
         <div id='game_left_sidebar'>
-            Players
+            <!-- Game Commands -->
+            <div id='game_commands_wrapper'>
+                <div id='game_commands'>
+                    Level: <span id='game_level_display'></span>
+                    <!-- Dev functions -->
+                    <div id='dev_functions'>
+                        <strong>dev functions</strong>
+                        <br />
+                        <input type='button' value='Send wave' id='send_wave' />
+                        <input type='button' value='Give 9999 Gold' id='give_gold' 
+                            onclick='Player_Object.options.gold += 9999;' />
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Players -->
+            <div id='players_wrapper'>
+                Players
+            </div>
         </div>
     </div>
     <!-- ========= LEFT SIDE END ========================================= -->
@@ -153,16 +172,6 @@ Body
             </div>
         </div>
         <div class='clear'></div>
-        <div id='game_function_wrapper'>
-            <!-- Dev functions -->
-            <div id='dev_functions'>
-                <strong>dev functions</strong>
-                <br />
-                <input type='button' value='Send wave' id='send_wave' />
-                <input type='button' value='Give 9999 Gold' id='give_gold' 
-                    onclick='player.options.gold += 9999;' />
-            </div>
-        </div>
     </div>
     <div class='clear'></div>
     <!-- ========= RIGHT SIDE END ======================================== -->
