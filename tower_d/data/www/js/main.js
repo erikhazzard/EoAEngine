@@ -10,7 +10,6 @@
  * ===============================*/
 var Tool_Tips = {}; 
 
-
 /*===========================================================================
 
   On DOMReady Events
@@ -24,6 +23,7 @@ window.addEvent('domready', function(){
     
     //Add Tool Tips
     Tool_Tips = new Tips($$('.tool_tip'),{
-            className: 'tool_tip_custom'
+            className: 'tool_tip_custom',
+            fixed: true
     });
 })

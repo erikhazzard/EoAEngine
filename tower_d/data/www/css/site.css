@@ -45,7 +45,8 @@ a:hover {
  *
  * --------------------------------*/
 #header_wrapper{
-    height:125px;
+    border-bottom:2px solid #343434;
+    height:100px;
     position:relative;
 }
     #header {
@@ -66,11 +67,11 @@ a:hover {
     #login_wrapper {
         border:1px solid #343434;
         font-size:.9em;
-        height:100px;
+        height:85px;
         position:absolute;
         right:10px;
         top:0;
-        width:250px;
+        width:300px;
         z-index:10;
     }
         #login {
@@ -89,6 +90,10 @@ a:hover {
     /*---------------------------------
      * Links
      * --------------------------------*/
+    #site_links_wrapper {
+        border-bottom:2px solid #343434;
+        height:50px;
+    }
      
 /*---------------------------------
  *
@@ -135,8 +140,8 @@ a:hover {
     _background:#343434;
     color:#efefef;
     font-size:.8em;
-    height:75px;
+    height:55px;
     padding:4px;
-    width:175px;
+    width:210px;
     z-index:999999;
 }

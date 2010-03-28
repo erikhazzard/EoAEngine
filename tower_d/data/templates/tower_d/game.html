@@ -4,10 +4,16 @@ Head
 =========================================================================== -->
 
 {% block extra_head_js %}
-    <!-- Tower D Library Functions  -->
+    <!-- Tower D MooTools Extensions  -->
+    <script src='/tower_d/static/js/tower_d_libraries/mootools_extensions.js' 
+        type='text/javascript'></script>
+    <!-- Tower D Library Scripts (Classes)  -->
 	<script src='/tower_d/static/js/tower_d_libraries/classes.js' 
         type='text/javascript'></script>
-    <!-- Game Functions -->
+    <script src='/tower_d/static/js/tower_d_libraries/game_class_Tower.js' 
+        type='text/javascript'></script>
+        
+    <!-- Game Script -->
 	<script src='/tower_d/static/js/game.js' type='text/javascript'></script>
 {% endblock extra_head_js%}
 
