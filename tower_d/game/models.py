@@ -1,3 +1,8 @@
+"""==========================================================================
+Imports
+
+Import all the views and models
+============================================================================="""
 from django.db import models
 from django.contrib.auth.models import *
 
@@ -5,6 +10,11 @@ from django.contrib import admin
 
 from tower_d.accounts.models import Account
 
+"""==========================================================================
+Set up the Classes
+
+Set up all the database structure
+============================================================================="""
 class Character(models.Model):
     name = models.CharField(max_length=200)
     
@@ -22,7 +32,6 @@ class Character(models.Model):
     #Flag to set if the character is logged in
     #   There should only be one active character per account
     is_logged_in = models.BooleanField(default=False)
-
 admin.site.register(Character)
 
 class ServerLog(models.Model):
@@ -36,5 +45,8 @@ class ServerLog(models.Model):
 
     #Date / Time message was created
     message_time = models.DateTimeField(auto_now=True, null=True, blank=True)
-
 admin.site.register(ServerLog)
+
+#Game
+#class GameLog(models.Model):
+    

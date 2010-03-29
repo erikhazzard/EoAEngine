@@ -52,8 +52,7 @@ window.addEvent('domready', function(){
 
     //Send wave
     $('send_wave').addEvent('click', function(evt){
-            creep_list.push(new Creep({health: 5 + creep_list.length}));
-            creep_list[creep_list.length - 1].send_to_end();
+        Game_Object.send_wave();    
     });
 
     //dummy game loop
