@@ -24,7 +24,7 @@ var Game = new Class({
         creep_value_modifier: .5,
 
         //Health
-        creep_base_health: 2,
+        creep_base_health: 3,
         creep_health_modifier: 1.7,
 
         //Save the level the game is at (waves)
@@ -469,8 +469,8 @@ var Creep= new Class({
     options: {
         //Properties
         name: 'Null',
-        health: 5,
-        power: 5,
+        health: 3,
+        power: 0,
 
         //Some extra attributes
         armor_class: 0,
