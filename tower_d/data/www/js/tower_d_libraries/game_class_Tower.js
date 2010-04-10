@@ -518,6 +518,31 @@ var Tower = new Class({
                                                     next_level_cost + ' gold');
             }
         }
+        else if(type === 'elemental_water'){
+            //Find the cost
+            var cost = this.calc_upgrade_cost(type, 
+                            this.options.elementals['water']);
+            var next_level_cost = this.calc_upgrade_cost(type,
+                            this.options.elementals['water'] + 1);
+
+            if(cost <= Player_Object.options.gold){
+                //Does the Player_Object have enough money?
+                //  (Use -cost because we will be decreasing the gold
+                //  by cost
+                Player_Object.update_gold(-cost);
+                this.options.value += cost;
+
+                this.options.elementals['water'] += 1;
+
+                //Update the text
+                $(this.options.html_elemental_water).highlight('#2222dd');
+                $(this.options.html_elemental_water).set('html',
+                                            this.options.elementals['water']);
+                    
+                $(this.options.html_elemental_water_upgrade).set('value', 'Upgrade: ' +
+                                                    next_level_cost + ' gold');
+            }
+        }
         
         //Update the rel of the element for the Tool Tips
         this.update_element_rel();

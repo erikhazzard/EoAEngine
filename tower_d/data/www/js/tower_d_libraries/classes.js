@@ -133,6 +133,7 @@ var Zone = new Class({
         //Is created on init
         grid: null,
         grid_container_element: 'grid_container',
+        grid_display_element: 'grid_display_container',
         grid_is_displayed: false,
 
         //Cell size of the grid
@@ -259,14 +260,16 @@ var Zone = new Class({
             this.options.grid_is_displayed = false;
            
             var that = this;
-            $each($$('.grid_cell'), function(i){ i.addClass('grid_cell_hidden'); })
+            $(this.options.grid_display_element).setStyle('opacity',0);
+            //$each($$('.grid_cell'), function(i){ i.addClass('grid_cell_hidden'); })
         }
         else{
             //Show the grid
             this.options.grid_is_displayed = true;
 
             var that = this;
-            $each($$('.grid_cell'), function(i){ i.removeClass('grid_cell_hidden'); })
+            $(this.options.grid_display_element).setStyle('opacity',.3);
+            //$each($$('.grid_cell'), function(i){ i.removeClass('grid_cell_hidden'); })
         }
     }
 });

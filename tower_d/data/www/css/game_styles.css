@@ -79,6 +79,14 @@
          * Grid and Cells
          *
          * --------------------------------*/
+        #grid_display_container {
+            background:#225588;
+            height:432px;
+            left:0;
+            position:absolute;
+            top:0;
+            width:432px;
+        }
         /*This grid container will show the grid overlaied on the map*/
         #grid_container {
             height:432px;
