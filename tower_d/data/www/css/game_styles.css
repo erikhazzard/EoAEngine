@@ -175,8 +175,7 @@
  *
  *==========================================================================*/
 .creep_base {
-    background:#000000;
-    border:1px solid #ffffff;
+    background:url('/tower_d/static/images/creeps/slime.png');
     cursor:pointer;
     height:0;
     left:0px;

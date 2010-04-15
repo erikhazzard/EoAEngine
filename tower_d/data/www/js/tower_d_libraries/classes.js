@@ -576,7 +576,6 @@ var Creep= new Class({
             'id': this.options.element_id,
             'class': 'creep_base',
             'styles': {
-                'background':this.options.color,
                 'height':Zone_Object.options.cell_size - 2 + 'px',
                 'left':this.options.pos_x * Zone_Object.options.cell_size,
                 'top':this.options.pos_y * Zone_Object.options.cell_size,

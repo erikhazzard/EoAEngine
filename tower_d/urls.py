@@ -65,10 +65,8 @@ urlpatterns = patterns('',
 
     
 )
-"""
 if settings.DEBUG:
     urlpatterns += patterns('',
     (r'^tower_d/static/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
     )
-"""
