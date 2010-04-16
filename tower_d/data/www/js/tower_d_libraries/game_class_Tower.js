@@ -55,14 +55,17 @@ var Tower = new Class({
 
         //Base attributes
         level_damage: 0,
+        base_damage: 1,
         damage: 1,
 
         //delay is in MS
         level_delay: 0,
+        base_delay: 1000,
         delay: 1000,
 
         //How far out the towers can shoot (in cells)
         level_range: 0,
+        base_range: 3,
         range: 3,
         
         //Spped the bullet moves
@@ -116,7 +119,10 @@ var Tower = new Class({
         //The creep aggro list, which is a priority list of creeps the tower 
         //  wants to attack.  When a creep enters the tower radius, it is
         //  pushed to this list. When it leaves, it is removed
-        creep_aggro_array: []
+        creep_aggro_array: [],
+
+        //Active effects on the tower (e.g. buffs or debuffs)
+        active_effects: []
     },
      /*--------------------------------
      * Constructor
@@ -598,9 +604,7 @@ var Tower = new Class({
                 //Make sure i+count_i and j+count_j are defined.  If not,
                 //  don't add a cell.  This will happen if we try to create
                 //  a tower near the edge of the map
-                if(Zone_Object.options.cell_objects_grid[i+count_i] !== undefined &&
-                    Zone_Object.options.cell_objects_grid[j+count_j] !== undefined){
-
+                if(Zone_Object.options.cell_objects_grid[i+count_i][j+count_j] !== undefined){
                     //Add a reference to the cell the radius contains
                     this.options.cells_in_range.push(
                             Zone_Object.options.cell_objects_grid[i+count_i][j+count_j]);

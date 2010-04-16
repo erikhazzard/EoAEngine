@@ -215,6 +215,7 @@ window.addEvent('keydown', function(event){
         //move key)
 
     /*Handle movement keys*/
+    /*
     if(event.key == 'up'){
         if(pc_character.options.dir_moving['up'] === false){
             pc_character.move('up', amount, Zone_Object.options.grid);
@@ -235,6 +236,7 @@ window.addEvent('keydown', function(event){
             pc_character.move('left', amount, Zone_Object.options.grid);
         }
     }
+    */
     
     /*Handle command keys*/
     if(event.key == "i"){
