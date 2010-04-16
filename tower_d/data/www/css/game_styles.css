@@ -80,15 +80,18 @@
          * Grid and Cells
          *
          * --------------------------------*/
+        /*This grid container will show the grid overlaied on the map
+         *  It is faster to show a single div overlaid vs. stylying many 
+         *  cells individually */
         #grid_display_container {
-            background:#225588;
+            background:#225588 url(/tower_d/static/images/zones/cell_bg_24_24.png);
             height:436px;
             left:0;
             position:absolute;
             top:0;
             width:600px;
         }
-        /*This grid container will show the grid overlaied on the map*/
+
         #grid_container {
             height:436px;
             position:relative;

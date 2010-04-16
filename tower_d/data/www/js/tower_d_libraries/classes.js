@@ -847,10 +847,10 @@ var Creep= new Class({
                 }
             }
         }
-        
+       
         //Check if creep has reached the goal
         //TODO: THIS SHOULD BE AN EVENT
-        if(i === 24 && j === 0){
+        if(i === 0 && j === 24){
             //i,j are the end goal in this case
             this.reached_goal();
         }

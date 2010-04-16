@@ -59,7 +59,7 @@ a:hover {
     #logo {
         font-size:1.2em;
         font-weight:bold;
-        text-shadow:1px 1px #787878;
+        text-shadow:1px 1px #dedede;
     }
     /*---------------------------------
      * Login Area
@@ -67,17 +67,19 @@ a:hover {
     #login_wrapper {
         border:1px solid #343434;
         font-size:.9em;
-        height:85px;
+        height:70px;
         position:absolute;
         right:10px;
         top:0;
-        width:300px;
+        width:375px;
         z-index:10;
     }
         #login {
             padding:2px;
         }
             #login_password_wrapper, #login_username_wrapper {
+                float:left;
+                margin:0 10px 0 0;
                 position:relative;
             }
                 #login_password_placeholder {
@@ -87,6 +89,14 @@ a:hover {
                     position:absolute;
                     top:0;
                 }
+                #login_username, #login_password, #login_password_placeholder{
+                    height:20px;
+                    width:150px;
+                }
+            #login_action_wrapper {
+                clear:both;
+                position:relative;
+            }
     /*---------------------------------
      * Links
      * --------------------------------*/
