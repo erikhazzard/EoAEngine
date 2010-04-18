@@ -207,7 +207,7 @@ window.addEvent('domready', function(){
 =============================================================================*/
 window.addEvent('keydown', function(event){ 
     //amount is also the cell size
-    var amount = Zone_Object.options.cell_size;
+    //var amount = Zone_Object.options.cell_size;
 
     //Make sure we move only after the current move is finished
         //If we don't check this, a request will be made every time
