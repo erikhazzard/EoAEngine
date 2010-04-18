@@ -1,0 +1,50 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Account	models.py	/^from tower_d.accounts.models import Account$/;"	i
+Character	models.py	/^class Character(models.Model):$/;"	c	inherits:models.Model
+EmailMessage	views_utils.py	/^from django.core.mail import EmailMessage, SMTPConnection, send_mail$/;"	i
+SMTPConnection	views_utils.py	/^from django.core.mail import EmailMessage, SMTPConnection, send_mail$/;"	i
+ServerLog	models.py	/^class ServerLog(models.Model):$/;"	c	inherits:models.Model
+SimpleTest	tests.py	/^class SimpleTest(TestCase):$/;"	c	inherits:TestCase
+TestCase	tests.py	/^from django.test import TestCase$/;"	i
+User	views_utils.py	/^from django.contrib.auth.models import User$/;"	i
+account	models.py	/^    account = models.ForeignKey(Account)$/;"	v	class:Character
+admin	models.py	/^from django.contrib import admin$/;"	i
+author	models.py	/^    author = models.ForeignKey(User, null=True, blank=True)$/;"	v	class:ServerLog
+cgi	views_utils.py	/^import operator, cgi, re, datetime, string, random$/;"	i
+chat_heartbeat	views_game.py	/^def chat_heartbeat(request):$/;"	f	access:public
+chat_send_message	views_game.py	/^def chat_send_message(request):$/;"	f	access:public
+color	models.py	/^    color = models.CharField(max_length=6, default="000000")$/;"	v	class:Character
+datetime	views_utils.py	/^import operator, cgi, re, datetime, string, random$/;"	i
+django_authenticate	views_utils.py	/^from django.contrib.auth import authenticate as django_authenticate$/;"	i
+django_login	views_utils.py	/^from django.contrib.auth import login as django_login$/;"	i
+django_logout	views_utils.py	/^from django.contrib.auth import logout as django_logout$/;"	i
+game	views_pages.py	/^def game(request):$/;"	f	access:public
+generate_config	views_javascript.py	/^def generate_config(request):$/;"	f	access:public
+get_character_info	views_game.py	/^def get_character_info(request):$/;"	f	access:public
+heartbeat	views_game.py	/^def heartbeat(request):$/;"	f	access:public
+index	views_pages.py	/^def index(request):$/;"	f	access:public
+is_logged_in	models.py	/^    is_logged_in = models.BooleanField(default=False)$/;"	v	class:Character
+last_update	models.py	/^    last_update = models.DateTimeField(auto_now=True, null=True, blank=True)$/;"	v	class:Character
+login_page	views_pages.py	/^def login_page(request):$/;"	f	access:public
+login_required	views_utils.py	/^from django.contrib.auth.decorators import login_required$/;"	i
+message	models.py	/^    message = models.CharField(max_length = 1024, default='', null=True, blank=True)$/;"	v	class:ServerLog
+message_time	models.py	/^    message_time = models.DateTimeField(auto_now=True, null=True, blank=True)$/;"	v	class:ServerLog
+modelformset_factory	views_utils.py	/^from django.forms.models import modelformset_factory$/;"	i
+models	models.py	/^from django.db import models$/;"	i
+move	views_game.py	/^def move(request):$/;"	f	access:public
+name	models.py	/^    name = models.CharField(max_length=200)$/;"	v	class:Character
+operator	views_utils.py	/^import operator, cgi, re, datetime, string, random$/;"	i
+pos_x	models.py	/^    pos_x = models.IntegerField(default=0)$/;"	v	class:Character
+pos_y	models.py	/^    pos_y = models.IntegerField(default=0)$/;"	v	class:Character
+random	views_utils.py	/^import operator, cgi, re, datetime, string, random$/;"	i
+re	views_utils.py	/^import operator, cgi, re, datetime, string, random$/;"	i
+reverse	views_utils.py	/^from django.core.urlresolvers import reverse$/;"	i
+send_mail	views_utils.py	/^from django.core.mail import EmailMessage, SMTPConnection, send_mail$/;"	i
+settings	views_utils.py	/^from django.conf import settings$/;"	i
+string	views_utils.py	/^import operator, cgi, re, datetime, string, random$/;"	i
+test_basic_addition	tests.py	/^    def test_basic_addition(self):$/;"	m	class:SimpleTest	access:public

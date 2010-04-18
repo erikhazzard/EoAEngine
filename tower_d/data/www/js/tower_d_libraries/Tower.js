@@ -604,7 +604,9 @@ var Tower = new Class({
                 //Make sure i+count_i and j+count_j are defined.  If not,
                 //  don't add a cell.  This will happen if we try to create
                 //  a tower near the edge of the map
-                if(Zone_Object.options.cell_objects_grid[i+count_i][j+count_j] !== undefined){
+                if(i+count_i > -1 && 
+                    j+count_j > -1 &&
+                        Zone_Object.options.cell_objects_grid[i+count_i][j+count_j] !== undefined){
                     //Add a reference to the cell the radius contains
                     this.options.cells_in_range.push(
                             Zone_Object.options.cell_objects_grid[i+count_i][j+count_j]);
@@ -696,6 +698,8 @@ var Tower = new Class({
              * TODO: Should elementals stack? E.G. Should wind stun creeps in
              * an AOE radius if the tower also has fire?  Or stun and chain
              * with light?
+             * TODO: All these calculations should be done during upgrades
+             * not during each attack 
              * ==============================================================*/
             /*============ ELEMENTAL: FIRE - SPLASH DAMAGE ==================*/
             //For splash damage, set the radius
