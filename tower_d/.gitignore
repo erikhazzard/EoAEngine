@@ -1,7 +1,10 @@
 .DS_Store
 *.swp
 *.*.swp
+/**/*.*.swp
 *.pyc
-*/*.pyc
-*/*.swp
+*/**/.pyc
+*/**/.swp
 settings.py
+tags
+/**/tags
