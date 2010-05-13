@@ -13,16 +13,24 @@
  * Game Container
  * --------------------------------*/
 #game_container {
+    bottom:0;
+    left:0;
+    height:450px;
+    overflow:hidden;
     position:relative;
-    width:100%;
+    right:0;
+    top:0;
 }
  /*---------------------------------
  * Left Side Bar
  * --------------------------------*/
  #game_left_sidebar_wrapper {
     background:#f0f0f0;
-    float:left;
-    position:relative;
+    bottom:0;
+    left:0;
+    position:absolute;
+    right:0;
+    top:0;
     width:18%;
  }
   /*---------------------------------
@@ -31,11 +39,13 @@
 #game_world_wrapper {
     background:#cdcdcd;
     border:1px solid #343434;
-    float:left;
-    margin:0 auto;
-    position:relative;
+    bottom:0;
+    left:18%;
+    position:absolute;
+    right:0;
     text-align:center;
-    width:55%;
+    top:0;
+    width:62%;
 }
     #game_world {
         border:2px solid #000000;
@@ -49,10 +59,13 @@
  * Right Side Bar
  * --------------------------------*/
 #game_right_sidebar_wrapper{
-    float:left;
-    position:relative;
+    bottom:0;
+    left:80%;
+    position:absolute;
+    right:0;
+    top:0;
     text-align:right;
-    width:26%;
+    width:20%;
 }
 
 /*==========================================================================
@@ -65,10 +78,10 @@
  * Game World Area
  *
  * --------------------------------*/
-    #zone_container {
+    #map_container {
         /*The background is a map passed in.  This will be
             procedurally generated*/
-        background:#225577 url(/tower_d/static/images/zones/map_1.png);
+        background:#225577 url(/tower_d/static/images/maps/map_1.png);
         height:100%;
         left:0;
         position:absolute;
@@ -84,7 +97,7 @@
          *  It is faster to show a single div overlaid vs. stylying many 
          *  cells individually */
         #grid_display_container {
-            background:#225588 url(/tower_d/static/images/zones/cell_bg_24_24.png);
+            background:#225588 url(/tower_d/static/images/maps/cell_bg_24_24.png);
             height:436px;
             left:0;
             position:absolute;

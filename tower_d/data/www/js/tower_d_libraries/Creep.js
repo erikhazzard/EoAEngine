@@ -29,7 +29,7 @@ var Creep= new Class({
         //Grid position
         pos_x: 1,
         pos_y: 0,
-        //position in the zone's path array
+        //position in the map's path array
         pos_path: 0,
 
         //Active buffs
@@ -115,10 +115,10 @@ var Creep= new Class({
             'id': this.options.element_id,
             'class': 'creep_base',
             'styles': {
-                'height':Zone_Object.options.cell_size - 2 + 'px',
-                'left':this.options.pos_x * Zone_Object.options.cell_size,
-                'top':this.options.pos_y * Zone_Object.options.cell_size,
-                'width':Zone_Object.options.cell_size - 2 + 'px'
+                'height':Map_Object.options.cell_size - 2 + 'px',
+                'left':this.options.pos_x * Map_Object.options.cell_size,
+                'top':this.options.pos_y * Map_Object.options.cell_size,
+                'width':Map_Object.options.cell_size - 2 + 'px'
             },
             'events': {
                 'click': function(evt){
@@ -130,7 +130,7 @@ var Creep= new Class({
 
         //Add to the map it it should be added
         if(this.options.add_to_map === true){
-            $('zone_container').adopt(this.options.element);
+            $('map_container').adopt(this.options.element);
         }
 
         this.options.move_chain = new Chain();
@@ -139,13 +139,13 @@ var Creep= new Class({
         //Create the move chain
         /*:::::::::::::::::::::::::*/
         //Set the path so we don't have to retype it everytime
-        var path = Zone_Object.options.path;
+        var path = Map_Object.options.path;
         
         //Set the path length equal to the actual path length minus 1 because
         //  we will be looking at i + 1 in the loop, and when the loop is at
         //  the last iteration we need to be able to access the last element,
         //  not an element outside the length of the array
-        var path_length = Zone_Object.options.path.length - 1;
+        var path_length = Map_Object.options.path.length - 1;
 
         //We don't yet allow for diagonal movement
         var move_direction = '';
@@ -169,7 +169,7 @@ var Creep= new Class({
                 move_length = Math.abs(path[i][0] - path[i+1][0]);
             }
            
-            //Tells the creep to go from start to finish based on zone's path
+            //Tells the creep to go from start to finish based on map's path
             that.options.move_functions.push(
                     //We need to use a closure here otherwise the variables
                     //  will be set to value of the last iteration
@@ -247,7 +247,7 @@ var Creep= new Class({
         //  determine what direction the creep is facing
         //Amount is the amount of cells to move the creep
         //Grid is a passed in grid, but if not passed in will use
-        //  Zone_Object's grid
+        //  Map_Object's grid
         
         //store this as that so we can refrence it inside other classes
         var that = this;
@@ -319,7 +319,7 @@ var Creep= new Class({
       
         //Set the amount of CSS pixels to move to the amount * the cell size
         if(cell_size === undefined){
-            var cell_size = Zone_Object.options.cell_size;
+            var cell_size = Map_Object.options.cell_size;
         }
         var css_amount_to_move = amount * cell_size
 
@@ -373,7 +373,7 @@ var Creep= new Class({
     //Add a creep to a cell
     add_to_cell: function(i,j){
         //Store a reference to the cell we want
-        var cell_object = Zone_Object.options.cell_objects_grid[i][j].options;
+        var cell_object = Map_Object.options.cell_objects_grid[i][j].options;
         //Add creep to the current cell object's references
         cell_object.contained_creeps.push(
             this);
@@ -407,13 +407,13 @@ var Creep= new Class({
     },
     remove_from_cell: function(i,j){
         //Remove the creep from the cell object
-        creep_array = Zone_Object.options.cell_objects_grid[i][j].
+        creep_array = Map_Object.options.cell_objects_grid[i][j].
             options.contained_creeps;
         creep_array.splice(creep_array.indexOf(this), 1);
 
         //Remove the creep from any towers that no longer are in 
         //  range of the creep
-        var cell_object = Zone_Object.options.cell_objects_grid[i][j].options;
+        var cell_object = Map_Object.options.cell_objects_grid[i][j].options;
         var towers_in_range = cell_object.towers_in_range;
 
         if(towers_in_range.length !== 0){
@@ -486,7 +486,7 @@ var Creep= new Class({
         var j = this.options.pos_x;
 
         //Remove the creep from the cell objects grid:
-        Zone_Object.options.cell_objects_grid[i][j].options.contained_creeps.erase(this);
+        Map_Object.options.cell_objects_grid[i][j].options.contained_creeps.erase(this);
 
         //Give the Player_Object some money
         Player_Object.update_gold(this.options.value);
@@ -516,7 +516,7 @@ var Creep= new Class({
         var j = this.options.pos_x;
 
         //Remove the creep from the cell objects grid:
-        Zone_Object.options.cell_objects_grid[i][j].options.contained_creeps.erase(this);
+        Map_Object.options.cell_objects_grid[i][j].options.contained_creeps.erase(this);
 
         //health
         Player_Object.options.health -= 1;

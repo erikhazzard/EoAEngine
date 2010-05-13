@@ -22,10 +22,10 @@ var Cell = new Class({
         //the value (passed in from the grid)
         cell_value: 0,
 
-        //The cell objects are associated with a zone object
-        //  Do not set the zone_object here though or MooTools
+        //The cell objects are associated with a map object
+        //  Do not set the map_object here though or MooTools
         //  will clone it; we want a reference
-        zone_object: {},
+        map_object: {},
 
         //Holds a reference to the creep(s) a cell contains 
         contained_creeps: [],
@@ -39,13 +39,13 @@ var Cell = new Class({
     /*--------------------------------
      * Constructor
      * -------------------------------*/
-    initialize: function(options, zone_object){
+    initialize: function(options, map_object){
         //set the object's attributes / options
         this.setOptions(options);
 
-        //Set the zone object reference here.  Otherwise, it would be set
+        //Set the map object reference here.  Otherwise, it would be set
         //  as a copy
-        this.options.zone_object = zone_object;
+        this.options.map_object = map_object;
 
         //that equals the current cell object
         var that = this;
@@ -55,21 +55,21 @@ var Cell = new Class({
             'id': 'grid_cell_' + that.options.pos_x + '_' + that.options.pos_y,
             'class': 'grid_cell grid_cell_hidden',
             'styles': {
-                'height': that.options.zone_object.options.cell_size - 1,
+                'height': that.options.map_object.options.cell_size - 1,
                 //y and x are reversed here because of the way we store it
                 //  y is the 'outter' loop which really is like the x value,
                 //  but if used x here instead of y, we would have to set the
                 //  pos_y to x instead of y.  When we access the array, the 
                 //  array is stored to look like a cartesian x,y coordinate
                 //  system but we access the array as [y][x]
-                'left': that.options.pos_x * that.options.zone_object.options.cell_size,
-                'top': that.options.pos_y * that.options.zone_object.options.cell_size,
-                'width': that.options.zone_object.options.cell_size - 1,
+                'left': that.options.pos_x * that.options.map_object.options.cell_size,
+                'top': that.options.pos_y * that.options.map_object.options.cell_size,
+                'width': that.options.map_object.options.cell_size - 1,
             },
             'events' : {
                 //Highlight cell
                 'mouseenter': function(el){
-                    if(that.options.zone_object.options.grid_is_displayed === true){
+                    if(that.options.map_object.options.grid_is_displayed === true){
                         //See if the grid has a 0 in the current location
                         //  as it's value
                         //Get the grid's value (y,x)
@@ -85,7 +85,7 @@ var Cell = new Class({
 
                 //Return cell to normal color
                 'mouseleave': function(el){
-                    if(that.options.zone_object.options.grid_is_displayed === true){
+                    if(that.options.map_object.options.grid_is_displayed === true){
                         that.options.element.removeClass('grid_cell_hover_value_0');
                         that.options.element.removeClass('grid_cell_hover_value_1');
                     }
@@ -148,7 +148,7 @@ var Cell = new Class({
         this.options.element.removeClass('grid_cell_hover_value_1');
 
         //hide the grid
-        Zone_Object.toggle_grid();
+        Map_Object.toggle_grid();
         }
     },
 

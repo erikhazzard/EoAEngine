@@ -132,18 +132,18 @@ var Tower = new Class({
     //  who it belongs to.  By default, it's just the Player_Object playing so
     //  this won't change for now, but we might want to allow multiple users
     //  to play and place towers in the same grid
-    initialize: function(options, zone_reference, Player_Object_reference){
+    initialize: function(options, map_reference, Player_Object_reference){
         this.setOptions(options); 
 
         //Set that for reference
         var that = this;
 
-        //set the zone and Player_Object references if not set
+        //set the map and Player_Object references if not set
         if(Player_Object_reference === undefined){
             Player_Object_reference = Player_Object;
         }
-        if(zone_reference === undefined){
-            zone_reference = Zone_Object;
+        if(map_reference === undefined){
+            map_reference = Map_Object;
         }
 
         //Set the cell reference
@@ -159,11 +159,11 @@ var Tower = new Class({
             Player_Object_reference.options.towers_owned.length - 1;
             
         //set the cell reference
-        this.options.cell_reference = Zone_Object.options.cell_objects_grid[i][j];
+        this.options.cell_reference = Map_Object.options.cell_objects_grid[i][j];
 
         //call the target cell object's adopt method to add this tower object
         //  to the cell object's contained_creeps list
-        Zone_Object.options.cell_objects_grid[i][j].adopt_tower(this);
+        Map_Object.options.cell_objects_grid[i][j].adopt_tower(this);
 
         //Set the Player_Object reference
         this.options.Player_Object_reference = Player_Object_reference;
@@ -179,10 +179,10 @@ var Tower = new Class({
             'title': this.options.element_id,
             'styles': {
                 'background-color':this.options.color,
-                'height': Zone_Object.options.cell_size - 2 + 'px', 
-                'left':this.options.pos_x * Zone_Object.options.cell_size,
-                'top':this.options.pos_y * Zone_Object.options.cell_size,
-                'width': Zone_Object.options.cell_size - 2 + 'px',
+                'height': Map_Object.options.cell_size - 2 + 'px', 
+                'left':this.options.pos_x * Map_Object.options.cell_size,
+                'top':this.options.pos_y * Map_Object.options.cell_size,
+                'width': Map_Object.options.cell_size - 2 + 'px',
                 'z-index': '1337'
             },
             'events': {
@@ -202,7 +202,7 @@ var Tower = new Class({
       
         //Add the element to the map if set to true
         if(this.options.add_to_map === true){
-            $('zone_container').adopt(this.options.element);
+            $('map_container').adopt(this.options.element);
         }
 
     },
@@ -606,14 +606,14 @@ var Tower = new Class({
                 //  a tower near the edge of the map
                 if(i+count_i > -1 && 
                     j+count_j > -1 &&
-                        Zone_Object.options.cell_objects_grid[i+count_i][j+count_j] !== undefined){
+                        Map_Object.options.cell_objects_grid[i+count_i][j+count_j] !== undefined){
                     //Add a reference to the cell the radius contains
                     this.options.cells_in_range.push(
-                            Zone_Object.options.cell_objects_grid[i+count_i][j+count_j]);
+                            Map_Object.options.cell_objects_grid[i+count_i][j+count_j]);
 
                     //Add a reference to this tower for each cell that this
                     //  radius contains
-                    Zone_Object.options.cell_objects_grid[i+count_i][j+count_j].adopt_tower_in_range(
+                    Map_Object.options.cell_objects_grid[i+count_i][j+count_j].adopt_tower_in_range(
                         that);
                 }
             }   
@@ -642,7 +642,7 @@ var Tower = new Class({
             var creep_j = target.options.pos_x;
             
             //Store the target cell for splash damage / chaining
-            var cell_target = Zone_Object.options.cell_objects_grid[
+            var cell_target = Map_Object.options.cell_objects_grid[
                 creep_i][creep_j];
           
             //Create a new element for the 'bullet', tween the bullet
@@ -654,7 +654,7 @@ var Tower = new Class({
                         }
             });
             //add the bullet element to the grid container
-            $(Zone_Object.options.grid_container_element).adopt(bullet_element);
+            $(Map_Object.options.grid_container_element).adopt(bullet_element);
             
             //Reset the attack timer
             this.reset_attack_timer();
@@ -668,7 +668,7 @@ var Tower = new Class({
             //Set a left and top amount to move the bullet to
             //  This amount is added to the left and top of the bullet
             //  tween so the bullet ends closer to the creep
-            var cell_size = Zone_Object.options.cell_size;
+            var cell_size = Map_Object.options.cell_size;
 
             var bullet_amount_left = cell_size;
             var bullet_amount_top = cell_size;
@@ -725,12 +725,12 @@ var Tower = new Class({
                         //Make sure i+count_i and j+count_j are defined.  If not,
                         //  don't add a cell.  This will happen if we try to create
                         //  a tower near the edge of the map
-                        if(Zone_Object.options.cell_objects_grid[i+count_i] !== undefined &&
-                            Zone_Object.options.cell_objects_grid[j+count_j] !== undefined){
+                        if(Map_Object.options.cell_objects_grid[i+count_i] !== undefined &&
+                            Map_Object.options.cell_objects_grid[j+count_j] !== undefined){
 
                             //Add a reference to the cell the radius contains
                             cells_effected.push(
-                                    Zone_Object.options.cell_objects_grid[i+count_i][j+count_j]);
+                                    Map_Object.options.cell_objects_grid[i+count_i][j+count_j]);
                         }
                     }   
                 }
@@ -791,12 +791,12 @@ var Tower = new Class({
                         //Make sure i+count_i and j+count_j are defined.  If not,
                         //  don't add a cell.  This will happen if we try to create
                         //  a tower near the edge of the map
-                        if(Zone_Object.options.cell_objects_grid[i+count_i] !== undefined &&
-                            Zone_Object.options.cell_objects_grid[j+count_j] !== undefined){
+                        if(Map_Object.options.cell_objects_grid[i+count_i] !== undefined &&
+                            Map_Object.options.cell_objects_grid[j+count_j] !== undefined){
 
                             //Add a reference to the cell the radius contains
                             cells_effected.push(
-                                    Zone_Object.options.cell_objects_grid[i+count_i][j+count_j]);
+                                    Map_Object.options.cell_objects_grid[i+count_i][j+count_j]);
                         }
                     }   
                 }

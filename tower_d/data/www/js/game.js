@@ -12,8 +12,8 @@ var Game_Object = new Game({});
 //Player object
 var Player_Object = new Player({});
 
-//our only zone object so far
-var Zone_Object = {};
+//our only map object so far
+var Map_Object = {};
 
 var creep_list = [];
 var c1, c2;
@@ -25,11 +25,11 @@ var c1, c2;
 window.addEvent('domready', function(){
     /*================================
      *
-     * Initial zone setup
+     * Initial map setup
      *
      * ===============================*/
-    //Set up the zone
-    Zone_Object = new Zone({});
+    //Set up the map
+    Map_Object = new Map({});
     
     /*--------------------------------
      * Game Functions
@@ -118,13 +118,13 @@ window.addEvent('domready', function(){
      *
      * ===============================*/
     $('toggle_grid').addEvent('click', function(){
-        Zone_Object.toggle_grid();
+        Map_Object.toggle_grid();
         Player_Object.options.mode = 'selection';
     });
 
     $('tower_purchase_button').addEvent('click', function(){
-        if(!Zone_Object.options.grid_is_displayed){
-            Zone_Object.toggle_grid();
+        if(!Map_Object.options.grid_is_displayed){
+            Map_Object.toggle_grid();
         }
         Player_Object.options.mode = 'build';
     });
@@ -207,7 +207,7 @@ window.addEvent('domready', function(){
 =============================================================================*/
 window.addEvent('keydown', function(event){ 
     //amount is also the cell size
-    //var amount = Zone_Object.options.cell_size;
+    //var amount = Map_Object.options.cell_size;
 
     //Make sure we move only after the current move is finished
         //If we don't check this, a request will be made every time
@@ -218,22 +218,22 @@ window.addEvent('keydown', function(event){
     /*
     if(event.key == 'up'){
         if(pc_character.options.dir_moving['up'] === false){
-            pc_character.move('up', amount, Zone_Object.options.grid);
+            pc_character.move('up', amount, Map_Object.options.grid);
         }
     }
     else if(event.key == 'right'){
         if(pc_character.options.dir_moving['right'] === false){
-            pc_character.move('right', amount, Zone_Object.options.grid);
+            pc_character.move('right', amount, Map_Object.options.grid);
         }
     }
     else if(event.key == 'down'){
         if(pc_character.options.dir_moving['down'] === false){
-            pc_character.move('down', amount, Zone_Object.options.grid);
+            pc_character.move('down', amount, Map_Object.options.grid);
         }
     }
     else if(event.key == 'left'){
         if(pc_character.options.dir_moving['left'] === false){
-            pc_character.move('left', amount, Zone_Object.options.grid);
+            pc_character.move('left', amount, Map_Object.options.grid);
         }
     }
     */
