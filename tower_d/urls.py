@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     
     #Index Page
     url(r'^index/', 'game.views_pages.index', name="page_index"),
-    url(r'^game/', 'game.views_pages.game', name="page_game"),
+    url(r'^game/', 'game.views_game.game', name="page_game"),
 
     #Login Page
     url(r'^login/', 'game.views_pages.login_page', name="page_login"),
@@ -39,14 +39,6 @@ urlpatterns = patterns('',
         name="js_config"),
 
     ###=======================================================================
-    ###    Chat Functions    
-    ###=======================================================================
-    url(r'^chat/heartbeat/', 'game.views_game.chat_heartbeat', 
-        name="chat_heartbeat"),
-    url(r'^chat/send/message/', 'game.views_game.chat_send_message', 
-        name="chat_send_message"),
-
-    ###=======================================================================
     ###    Game Functions    
     ###=======================================================================
     #-------------------------------------
@@ -54,15 +46,6 @@ urlpatterns = patterns('',
     #-------------------------------------
     url(r'^game/heartbeat/', 'game.views_game.heartbeat', 
         name="character_heartbeat"),
-    
-    #-------------------------------------
-    #       Character
-    #-------------------------------------
-    url(r'^character/get/info/', 'game.views_game.get_character_info',
-        name="character_get_info"),
-    url(r'^character/action/move/', 'game.views_game.move', 
-        name="character_action_move"),
-
     
 )
 if settings.DEBUG:

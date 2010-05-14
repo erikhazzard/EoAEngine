@@ -52,19 +52,10 @@ def login(request):
 
     #See if we got back a user
     if user is not None:
-        #We got a user
-
-        #For now, set a character to logged in
-        cur_character = Character.objects.get(account=user.get_profile())
-        cur_character.is_logged_in = True
-        cur_character.save()
-
         #Call django's built in login
         django_login(request, user)
-
     else:
-        #Raise an error so the requester knows the login was incorrect
-        raise 404
+        raise Http404
 
     return HttpResponse(res)
 

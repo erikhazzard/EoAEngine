@@ -29,24 +29,8 @@ def index(request):
     return HttpResponseRedirect(reverse('page_game'))
     return {}
 
-#-----------------
-#   Game Page
-#-----------------
 @render_to('tower_d/login.html')
 def login_page(request):
     """Renders the Login page"""
 
-    return {}
-
-#-----------------
-#   Game Page
-#-----------------
-@render_to('tower_d/game.html')
-def game(request):
-    """Renders the game page, game lives here"""
-
-    #See if user is logged in
-    #if not request.user.is_authenticated():
-    #    return HttpResponseRedirect(reverse('page_login'))
-   
     return {}

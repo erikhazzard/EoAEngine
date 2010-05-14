@@ -57,10 +57,6 @@ def generate_config(request):
     //Game Functions
     var url_game_heartbeat = '%(url_game_heartbeat)s';
 
-    //Character Functions
-    var url_character_info = '%(url_character_info)s';
-    var url_character_move = '%(url_character_move)s';
-
     """
 
     #Build values to insert in the response
