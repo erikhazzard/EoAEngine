@@ -30,13 +30,19 @@ def game(request):
     except KeyError:
         #No game ID was passed in, so it's a new game
         return {}
+   
+    #Get the game state by calling the load_game_state function that returns
+    #   the game state in a string
+    game_state = load_game_state(game_id)
 
-    #Get the game id
-    game_id = cgi.escape(request.GET['id'])
+    #Return the game state
+    return {'game_state': game_state}
+
+def load_game_state(game_id):
+    '''Gets game info based on the passed in ID and returns some JSON'''
+
     #Remove everything except letters and numbers
     game_id = re.sub(r'[^a-zA-Z0-9]', '', game_id)
+    return game_id
     
-    return HttpResponse("%s" % (game_id))
-  
 
-    return {}

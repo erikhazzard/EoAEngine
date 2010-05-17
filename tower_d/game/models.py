@@ -85,9 +85,9 @@ Game Related
 -----------
 Models related specifically to a game
 ============================================================================="""
-class GamePlayerHealth(models.Model):
-    """GamePlayerHealth
-    Stores the health for each player for each game"""
+class GamePlayerInfo(models.Model):
+    """GamePlayerInfo
+    Stores the info (e.g. health and gold) for each player for each game"""
     #The associated game id
     game = models.ForeignKey('Game')
     
@@ -96,17 +96,8 @@ class GamePlayerHealth(models.Model):
 
     #The player's health
     health = models.IntegerField(default=CONFIG.DEFAULT_PLAYER_HEALTH)
-
-
-class GameGoldAmount(models.Model):
-    """GameGoldAmount
-    Keeps track of the gold amount each player has during each game"""
-    #The associated game id
-    game = models.ForeignKey('Game')
     
-    #The related player
-    player = models.ForeignKey('accounts.Account')
-
+    #The player's gold
     gold = models.IntegerField(default=0)
 
 class Game(models.Model):
@@ -117,6 +108,8 @@ class Game(models.Model):
     #Store the players (accounts)
     accounts = models.ManyToManyField('accounts.Account')
 
+    #Stores the map
+    map = models.ForeignKey(Map)
 
     #Store the start and end dates
     date_started = models.DateTimeField(auto_now_add=True)
