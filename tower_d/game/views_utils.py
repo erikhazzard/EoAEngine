@@ -31,6 +31,9 @@ from django.contrib.auth.forms import *
 from django.forms.models import modelformset_factory
 from django.core.mail import EmailMessage, SMTPConnection, send_mail
 
+#Serializer
+import django.core.serializers as serializers
+
 #Our util imports
 from util import *
 

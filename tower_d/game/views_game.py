@@ -9,6 +9,7 @@ TODO (Soon)
 ============================================================================="""
 from views_utils import *
 
+import subprocess, sys, os
 '''========================================================================
 
 Functions
@@ -43,6 +44,14 @@ def load_game_state(game_id):
 
     #Remove everything except letters and numbers
     game_id = re.sub(r'[^a-zA-Z0-9]', '', game_id)
+
+    #Launch process with game id
+    #TODO: Handle multiple processes?
+    game_process = subprocess.Popen([sys.executable, 
+        os.path.join(sys.path[0], 'game/game_server.py'),
+        '42'])
+
+    #Lookup game state in DB and return a JSON string
     return game_id
     
 
