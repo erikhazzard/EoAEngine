@@ -48,8 +48,10 @@ def load_game_state(game_id):
     #Launch process with game id
     #TODO: Handle multiple processes?
     game_process = subprocess.Popen([sys.executable, 
-        os.path.join(sys.path[0], 'game/game_server.py'),
-        '42'])
+        os.path.join(sys.path[0], 'game/game_daemon.py'),
+        '42'], preexec_fn = os.setsid)
+
+    print game_process.pid
 
     #Lookup game state in DB and return a JSON string
     return game_id
