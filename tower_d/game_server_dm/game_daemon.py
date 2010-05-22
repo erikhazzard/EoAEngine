@@ -1,8 +1,10 @@
 """==========================================================================
                                                                                                        
-run_world.py
+game_daemon.py
 
-handles the game running on the server backend
+handles the game running on the server backend.  This is an event driven
+process, it will handle communicate with the web server to push and receive
+updates.
 
 ============================================================================="""
 """----------------------------------------
@@ -24,29 +26,19 @@ Functions
 
 ==========================================================================='''
 #TODO: This
-def load_game(game_id):
-    '''load_game(game_id)
-    Takes in a game_id and sets up the game state based on the data in the DB
-    '''
-    print 'Game id: ', game_id
-    run_world()
-
-def run_world():
-    '''run_world()
-    After everything has been setup (if necessary), run the world'''
-    
-    print 'In run world'
+def run_world(game_id):
+    '''run_world(game_id)
+    Main function to control and run the game.''' 
+    print 'Game ID: %s | In run world' % (game_id)
+    while True:
+        '''Main game loop'''
 '''========================================================================
 
 Init
 
 ==========================================================================='''
 if __name__ == '__main__':
-    try:
-        #If an ID was passed in, use it and load
-        game_id = sys.argv[1]
-        #Call load game
-        load_game(game_id)
-    except IndexError:
-        #No system arguments passed in, directly call run_world
-        run_world()
+    #If an ID was passed in, use it and load
+    game_id = sys.argv[1]
+    #Call load game
+    run_world(game_id)
