@@ -11,6 +11,11 @@ updates.
 Imports
 -------------------------------------------"""
 import sys
+#Import game libraries
+from library.custom_exceptions import *
+from library.Cell import *
+from library.Map import *
+from library.Tower import *
 
 '''========================================================================
 
@@ -22,6 +27,19 @@ def run_world(game_id):
     '''run_world(game_id)
     Main function to control and run the game.''' 
     print 'Game ID: %s | In run world' % (game_id)
+
+    '''Initialize World
+    -------------------------------------'''
+    print 'Creating map and cells...'
+    map = Map()
+
+    '''Initialize World
+    -------------------------------------'''
+    #TODO: GET DATA FROM DB
+
+    '''Game Loop
+    -------------------------------------'''
+    print 'Entering game loop...'
     while True:
         '''Main game loop'''
 '''========================================================================

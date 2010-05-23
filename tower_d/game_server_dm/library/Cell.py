@@ -22,6 +22,10 @@ class Cell(object):
         self.pos_x = pos_x
         self.pos_y = pos_y
 
+        #Store i and j, just for (in)sanity checks
+        self.pos_i = self.pos_y
+        self.pos_j = self.pos_x
+
         #Cell value (passed in from grid)
         self.cell_value = cell_value
         

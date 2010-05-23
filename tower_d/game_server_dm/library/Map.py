@@ -69,12 +69,14 @@ class Map(object):
             [24,1],[24,0]
         ] 
 
-        #Contains all the cell objects
-        self.cell_objects = [[]]
+        #Call function to create the cells for the map
+        self.create_cells()
         
     def create_cells(self):
         '''create_cells
         Creates a matrix of cell objects based on the map grid'''
+        self.cell_objects = [[]]
+
         #Loop through the grid and create a cell object for each cell
         for i in range(len(self.grid)):
             for j in range(len(self.grid[i])):

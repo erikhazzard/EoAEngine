@@ -50,6 +50,23 @@ class testMap(unittest.TestCase):
     def test_createCellObjects(self):
         self.map.create_cells()
 
+    def test_verifyCellObjects(self):
+        #Get cell value of grid
+        assert self.map.grid is not None
+        
+        cell_value = self.map.grid[1][1]
+        assert cell_value is not None
+        #Make sure cell values match
+        self.assertEqual(self.map.cell_objects[1][1].cell_value, 
+                cell_value)
+
+        #Do this again, but do the opposite check
+        cell_value = self.map.grid[1][2]
+        assert cell_value is not None
+        #Make sure the cell_value does not match 
+        self.assertNotEqual(self.map.cell_objects[1][2].cell_value, 
+                cell_value + 1)
+
     def tearDown(self):
         self.map = None
 
