@@ -80,8 +80,11 @@ class Map(object):
         #Loop through the grid and create a cell object for each cell
         for i in range(len(self.grid)):
             for j in range(len(self.grid[i])):
+                #Add a cell object to the map's cell object list for each cell
+                #   in the map's grid
                 self.cell_objects[i].append(Cell.Cell(pos_x=j, pos_y=i, 
                         cell_value=self.grid[i][j]))
+            #Add a list for the next row
             self.cell_objects.append([])
 
 

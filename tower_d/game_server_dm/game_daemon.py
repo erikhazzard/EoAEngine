@@ -16,6 +16,7 @@ from library.custom_exceptions import *
 from library.Cell import *
 from library.Map import *
 from library.Tower import *
+from library.Player import *
 
 '''========================================================================
 

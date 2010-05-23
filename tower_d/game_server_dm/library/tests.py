@@ -1,6 +1,7 @@
 import unittest
+                                                 
 from custom_exceptions import *
-import Tower, Map, Cell
+import Tower, Map, Cell, Player, Creep
 
 TYPES = ('damage', 'delay', 'range',
         'elemental_dark', 'elemental_earth',
@@ -89,6 +90,44 @@ class testCell(unittest.TestCase):
     def tearDown(self):
         self.cell = None
 
+'''--------------------------------------
+Player Tests
+-----------------------------------------'''
+class testPlayer(unittest.TestCase):
+    def setUp(self):
+        self.player = Player.Player()
+
+    def test_updateGold(self):
+        assert self.player.gold is not None
+        old_gold_amount = self.player.gold
+        self.assertEqual(self.player.update_gold(40),
+                old_gold_amount + 40)
+
+    def tearDown(self):
+        self.Player = None
+
+'''--------------------------------------
+Creep Tests
+-----------------------------------------'''
+class testCreep(unittest.TestCase):
+    def setUp(self):
+        self.creep = Creep.Creep() 
+
+    def test_moveTest(self):
+        #Create a dummy path
+        path = ((0,1),(0,2),(0,3),(0,4),(0,5))
+
+        self.creep.move(path)
+        self.creep.move(path)
+        self.creep.move(path)
+        self.creep.move(path)
+        self.creep.move(path)
+        self.creep.move(path)
+        self.creep.move(path)
+    
+
+    def tearDown(self):
+        self.creep = None
 
 if __name__ == '__main__':
     unittest.main()
