@@ -38,11 +38,23 @@ def run_world(game_id):
     -------------------------------------'''
     #TODO: GET DATA FROM DB
 
+    #Set up the players.  Keep track of a list called players which contains
+    #   the player objects
+    print 'Creating players...'
+    players = []
+    #Use a dummy player
+    players.append(Player())
+
     '''Game Loop
     -------------------------------------'''
-    print 'Entering game loop...'
+    print '\n\nEntering game loop...'
+    a = 0
     while True:
         '''Main game loop'''
+        a += 1
+        if a >= 999999:
+            print players[0]
+            a = 0
 '''========================================================================
 
 Init

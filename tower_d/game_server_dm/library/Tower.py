@@ -15,7 +15,16 @@ class Tower(object):
    #Class variables
     towers_created = 0
 
-    def __init__(self, player_id = 0):
+    def __init__(self, player_id=0, 
+            i=0, j=0, cell_size_xy=1,
+            base_damage=1, base_delay=1000, base_range=3,
+            damage=1, delay=1000, range= 3,
+            attributes=None,
+            bullet_speed=500,
+            creeps_killed=0,
+            elemental_effects=None,
+            value=0,
+            base_cost=10):
         '''Update class variables'''
         Tower.towers_created += 1
 
@@ -26,66 +35,72 @@ class Tower(object):
         #ID of owner     
         self.player_id = player_id
 
-        #Positions
-        self.pos_x = 0
-        self.pos_y = 0
+        #Positions(save x,y and i,j)
+        self.pos_x = j
+        self.pos_y = i
+
+        self.pos_i = i
+        self.pos_j = j
 
         #How many cells needed for both x and y 
         #   e.g. 2 would mean it really takes up 4 cells (2x + 2y = 4)
-        self.cell_size_xy = 1
+        self.cell_size_xy = cell_size_xy
 
         #Base attributes
-        self.base_damage = 1
-        self.base_delay = 1000
-        self.base_range = 3
+        self.base_damage = base_damage
+        self.base_delay = base_delay
+        self.base_range = base_range
 
         #current attributes
-        self.damage = 1
-        self.delay = 1000
-        self.range = 3
-
-        self.attributes = { 
-            'damage': {'value': 1,
-                        'level': 1,
-                        'modifier': 1.3},
-            'delay': {'value': 1000,
-                        'level': 1,
-                        'modifier': 1.3},
-            'range': {'value': 3,
-                        'level': 1,
-                        'modifier': 3.1},
-            'elemental_dark': {'value': 0,
-                        'level': 0,
-                        'modifier': 1.5},
-            'elemental_earth': {'value': 0,
-                        'level': 0,
-                        'modifier': 1.5},
-            'elemental_fire': {'value': 0,
-                        'level': 0,
-                        'modifier': 1.5},
-            'elemental_light': {'value': 0,
-                        'level': 0,
-                        'modifier': 1.5},
-            'elemental_water': {'value': 0,
-                        'level': 0,
-                        'modifier': 1.5},
-            'elemental_wind': {'value': 0,
-                        'level': 0,
-                        'modifier': 1.5}
-        }
+        self.damage = damage
+        self.delay = delay
+        self.range = range
+    
+        if attributes is None:
+            attributes = { 
+                'damage': {'value': 1,
+                            'level': 1,
+                            'modifier': 1.3},
+                'delay': {'value': 1000,
+                            'level': 1,
+                            'modifier': 1.3},
+                'range': {'value': 3,
+                            'level': 1,
+                            'modifier': 3.1},
+                'elemental_dark': {'value': 0,
+                            'level': 0,
+                            'modifier': 1.5},
+                'elemental_earth': {'value': 0,
+                            'level': 0,
+                            'modifier': 1.5},
+                'elemental_fire': {'value': 0,
+                            'level': 0,
+                            'modifier': 1.5},
+                'elemental_light': {'value': 0,
+                            'level': 0,
+                            'modifier': 1.5},
+                'elemental_water': {'value': 0,
+                            'level': 0,
+                            'modifier': 1.5},
+                'elemental_wind': {'value': 0,
+                            'level': 0,
+                            'modifier': 1.5}
+            }
+        self.attributes = attributes
         
         #Bullet speed
-        self.bullet_speed = 500
+        self.bullet_speed = bullet_speed
 
         #Creeps tower has killed
-        self.creeps_killed = 0
+        self.creeps_killed = creeps_killed
 
         #Active Effects
         #--------------------------------
 
         #Elemental Buffs
         #--------------------------------
-        self.elemental_effects = {'dark': {'tick_delay': 1000,
+        if elemental_effects is None:
+            elemental_effects = {'dark': {'tick_delay': 1000,
                                         'tick_damage': 0,
                                         'tick_number': 0
                                     },
@@ -94,12 +109,13 @@ class Tower(object):
                                     },
                             'wind': {'stun_chance': 0,
                                     'stun_duration': 0}}
+        self.elemental_effects = elemental_effects
 
         #Gold value of tower
-        self.value = 0
+        self.value = value
     
         #Base cost of tower, 10 by default
-        self.tower_base_cost = 10
+        self.tower_base_cost = base_cost 
 
         #Timers
         #--------------------------------
@@ -108,7 +124,7 @@ class Tower(object):
         #Objects in range of tower
         #--------------------------------
         #Cells in the radius of the tower (may not be necessary)
-        self.cells_in_range = {}
+        self.cells_in_range = []
         
         #The creep aggro list, which is a priority list of creeps the tower 
         #  wants to attack.  When a creep enters the tower radius, it is
@@ -168,3 +184,43 @@ class Tower(object):
         else:
             #Player does not have enough money
             raise MoneyAmountError('Insufficient Funds!') 
+
+    '''Cell Functions'''
+    def update_cells_in_range(self, cell_grid=None):
+        '''Calculate the cells in a radius around the tower.  Takes in a grid
+        which is the map cell object list and stores the cells in the tower
+        cell radius list'''
+        if cell_grid is None:
+            raise EmptyCellGrid('Empty cell_grid_object passed in')
+
+
+        #Store cells that fall in a radius of the tower
+        #Store a loop length and range variable to keep track of radius
+        loop_length = self.range + 1
+
+        count_i = -self.range
+        count_j = -self.range
+
+        #reset the tower's cells in range list
+        self.cells_in_range = []
+
+        #Loop through all the cells around the tower within a radius
+        #   The radius is self.radius
+        while count_i < loop_length:
+            while count_j < loop_length:
+                if self.pos_i + count_i > -1 and \
+                    self.pos_j + count_j > -1:
+                    #Add the cell object to the tower's cells in range list
+                    self.cells_in_range.append(
+                            cell_grid[self.pos_i+count_i][self.pos_j+count_j])
+
+                    #Add the tower to the cell's tower object list
+                    cell_grid[self.pos_i+count_i][self.pos_j+count_j]
+
+                count_j += 1
+            #Reset count_j and increase count_i
+            count_j = -self.range
+            count_i += 1
+
+        #Return the cells in range
+        return self.cells_in_range

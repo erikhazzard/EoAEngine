@@ -35,6 +35,44 @@ class testTower(unittest.TestCase):
 
         self.assertEqual(cost, self.tower.calc_upgrade_cost('damage'))
 
+    def test_calculate_cells_in_range(self):
+        '''Tests the function that grabs all the cells in a radius around
+        the tower'''
+        #Cannot pass in an empty cell grid object
+        self.assertRaises(EmptyCellGrid, self.tower.update_cells_in_range)
+        
+        #Create a dummy cell objects grid to pass in
+        map_object = Map.Map()
+        cell_objects_grid = map_object.cell_objects
+        #This is testing the map object, so technically it shouldnt really
+        #   be here
+        assert cell_objects_grid is not None
+
+        #With default position of 0,0
+        new_cells_in_range = self.tower.update_cells_in_range(
+                cell_grid=cell_objects_grid)
+        assert new_cells_in_range is not None
+
+        #With position of 4,4
+        self.tower.pos_i = 4
+        self.tower.pos_j = 4
+        new_cells_in_range = self.tower.update_cells_in_range(
+                cell_grid=cell_objects_grid)
+        assert new_cells_in_range is not None
+
+        #With large radius
+        self.tower_radius = 10
+        new_cells_in_range = self.tower.update_cells_in_range(
+                cell_grid=cell_objects_grid)
+        assert new_cells_in_range is not None
+
+        #With really big radius
+        self.tower_radius = 100
+        new_cells_in_range = self.tower.update_cells_in_range(
+                cell_grid=cell_objects_grid)
+        assert new_cells_in_range is not None
+
+
     def test_upgrade(self):
         #Try to upgrade with some dummy value
         self.tower.upgrade('damage',20)
@@ -113,6 +151,10 @@ class testPlayer(unittest.TestCase):
 
         self.player.health = 10
         self.assertEqual(self.player.update_health(9), 19)
+    
+    def test_destroy(self):
+        self.assertRaises(PlayerDefeated,
+                self.player.destroy)
 
     def tearDown(self):
         self.Player = None

@@ -12,8 +12,10 @@ Player
 
 ==========================================================================='''
 class Player(object):
+    amount_of_players = 0
+
     '''Handles the player'''
-    def __init__(self, health=20, gold=100):
+    def __init__(self, health=20, gold=100, id=None):
         '''Set up player attributes'''
         #Player info
         self.health = health
@@ -27,6 +29,13 @@ class Player(object):
 
         #An aggregate of the creeps killed from each tower owned
         self.creeps_killed = 0
+
+        #Store an ID
+        if id is None:
+            id = Player.amount_of_players
+        self.id = id
+        
+        Player.amount_of_players += 1
 
     def update_gold(self, gold_amount):
         '''Update the player gold with the passed in amount  
@@ -45,3 +54,9 @@ class Player(object):
 
         #return the current health
         return self.health
+
+    def destroy(self):
+        '''Similar to creep destroy function, will raise an exception 
+            with info that the player has been defeated'''
+        raise PlayerDefeated('%s has been defeated!  Life: %s' % (
+                self.id, self.health))
