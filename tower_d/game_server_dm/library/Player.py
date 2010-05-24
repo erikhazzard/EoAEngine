@@ -37,3 +37,11 @@ class Player(object):
 
         #Return the new gold amount
         return self.gold
+
+    def update_health(self, amount):
+        '''Updates the player health - usually this will be negative, but may
+            positive'''
+        self.health += amount
+
+        #return the current health
+        return self.health

@@ -8,6 +8,7 @@ TYPES = ('damage', 'delay', 'range',
         'elemental_fire', 'elemental_light',
         'elemental_water', 'elemental_wind')
 
+test_player = Player.Player()
 '''--------------------------------------
 Tower Tests
 -----------------------------------------'''
@@ -103,6 +104,16 @@ class testPlayer(unittest.TestCase):
         self.assertEqual(self.player.update_gold(40),
                 old_gold_amount + 40)
 
+    def test_updateHealth(self):
+        assert self.player.health is not None
+        #Get player health
+        health = self.player.health
+
+        self.assertEqual(self.player.update_health(-5), health - 5)
+
+        self.player.health = 10
+        self.assertEqual(self.player.update_health(9), 19)
+
     def tearDown(self):
         self.Player = None
 
@@ -124,7 +135,30 @@ class testCreep(unittest.TestCase):
         self.creep.move(path)
         self.creep.move(path)
         self.creep.move(path)
-    
+
+    def test_reachedGoal(self):
+        self.creep.reached_goal()
+
+    def test_removeCreep(self):
+        self.creep.destroy()
+
+    def test_updateHealth(self):
+        assert self.creep.health is not None
+        self.creep.health = 20
+        self.assertEqual(self.creep.update_health(-4),
+            16)
+        
+        #Health = 0
+        self.creep.health = 4
+        #Should return none
+        self.assertEqual(self.creep.update_health(-4),
+            None)
+
+        #Health = Below 0
+        self.creep.health = 1
+        #Should return none
+        self.assertEqual(self.creep.update_health(-4),
+            None)
 
     def tearDown(self):
         self.creep = None

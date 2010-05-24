@@ -71,6 +71,9 @@ class Map(object):
 
         #Call function to create the cells for the map
         self.create_cells()
+
+        #Store a list of creep
+        self.creep_list = []
         
     def create_cells(self):
         '''create_cells
