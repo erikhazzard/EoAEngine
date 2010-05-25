@@ -77,6 +77,10 @@ class testTower(unittest.TestCase):
         #Try to upgrade with some dummy value
         self.tower.upgrade('damage',20)
 
+    def test_attack(self):
+        #Test the attack method of a tower
+        self.tower.attack((0,0))
+
     def tearDown(self):
         self.tower = None
 

@@ -185,7 +185,8 @@ class Tower(object):
             #Player does not have enough money
             raise MoneyAmountError('Insufficient Funds!') 
 
-    '''Cell Functions'''
+    '''Update Cells in Range
+    -------------------------------------'''
     def update_cells_in_range(self, cell_grid=None):
         '''Calculate the cells in a radius around the tower.  Takes in a grid
         which is the map cell object list and stores the cells in the tower
@@ -224,3 +225,12 @@ class Tower(object):
 
         #Return the cells in range
         return self.cells_in_range
+
+    '''Attack
+    -------------------------------------'''
+    def attack(self, target=None):
+        '''Attack will attack the passed in target
+            Target can be a creep or a cell position (e.g. (0,0))'''
+        if target is None:
+            return
+
