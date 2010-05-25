@@ -1,5 +1,10 @@
-# Django settings for tower_dweb project.
-
+"""=============================================================================
+    Settings.py
+    ------------
+    Handles server specific settings.  Also contains state-specific settings
+============================================================================="""
+#Debug settings
+#----------------------------------------
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
