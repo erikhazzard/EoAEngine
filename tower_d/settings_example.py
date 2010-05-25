@@ -17,7 +17,7 @@ MANAGERS = ADMINS
 """Set up paths"""
 import os
 TOWER_D_ROOT_URL = '/tower_d/'
-TOWER_D_PATH = '/home/erik/www/vasirdev/EoAEngine'
+TOWER_D_PATH = '/home/erik/Code/EoAEngine'
 ROOT_PATH = os.path.join(TOWER_D_PATH, 'tower_d')
 
 """database settings"""
