@@ -77,6 +77,11 @@ class Map(object):
         #Store a list of creep
         self.creep_list = []
         
+    '''=====================================================================
+
+    Methods
+
+    ========================================================================'''
     def create_cells(self):
         '''create_cells
         Creates a matrix of cell objects based on the map grid'''

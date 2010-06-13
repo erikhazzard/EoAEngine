@@ -38,6 +38,11 @@ class Cell(object):
         #Store a list of towers that have a radius extending to this cell
         self.towers_in_range = []
         
+        '''=====================================================================
+
+        Methods
+
+        ========================================================================'''
     def adopt_tower(self, tower=None):
         '''Stores a reference to the tower in the cell'''
 

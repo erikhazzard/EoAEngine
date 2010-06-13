@@ -61,6 +61,11 @@ class Creep(object):
             map_object = None
         self.map_object = map_object
 
+    '''=====================================================================
+    Methods
+    ========================================================================'''
+    '''Movement related
+    -------------------------------------'''
     def move(self, path):
         '''Move the creep to the next cell based on the path and increment 
             the path index'''
@@ -118,15 +123,8 @@ class Creep(object):
                 i.update_health(self.creep_player_life_value)
         '''
 
-    def destroy(self):
-        '''Destory the creep - remove it from the list of active creeps
-            in the game'''
-        #Remove the creep from the creep list
-        try:
-            self.creep_list.remove(self)
-        except ValueError:
-            pass
-
+    '''Damage / Health related functions
+    -------------------------------------'''
     def update_health(self, amount, referrer=None):
         '''Update the creep's health and destory if necessary'''
         #Update health
@@ -140,3 +138,29 @@ class Creep(object):
             return None
         else:
             return self.health
+
+    def take_damage(self, damage_amount, referrer=None):
+        '''Takes an amount of damage and calculates the amount of health
+        to remove based on the creep's armor / elementals / etc'''
+        #Make sure the creep is alive
+        if self.health <= 0:
+            return None
+
+        #Change the creep's health
+        self.health -= damage_amount
+        
+        if self.health <= 0:
+            self.destroy()
+            #Update amount of the referrer's creeps killed
+            if referrer is not None:
+                referrer.creeps_killed += 1
+            return None
+
+    def destroy(self):
+        '''Destory the creep - remove it from the list of active creeps
+            in the game'''
+        #Remove the creep from the creep list
+        try:
+            self.creep_list.remove(self)
+        except ValueError:
+            pass

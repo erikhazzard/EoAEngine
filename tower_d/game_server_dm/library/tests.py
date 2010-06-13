@@ -223,6 +223,14 @@ class testCreep(unittest.TestCase):
         self.assertEqual(self.creep.update_health(-4),
             None)
 
+    def test_take_damage(self):
+        self.creep.health = 20
+        self.creep.take_damage(10)
+        self.assertEquals(self.creep.health,10)
+
+        self.creep.take_damage(10)
+        self.assertEquals(self.creep.health,0)
+
     def tearDown(self):
         self.creep = None
 

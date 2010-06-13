@@ -18,8 +18,15 @@ class Tower(object):
     def __init__(self, player_id=0, 
             i=0, j=0, cell_size_xy=1,
             base_damage=1, base_delay=1000, base_range=3,
-            damage=1, delay=1000, range= 3,
+            #Attribute values
             attributes=None,
+            #Default attribute values
+            damage=1, delay=1000, range= 3,
+            damage_level=0, delay_level=0, range_level=0,
+            #Elemental values
+            dark_level=0,dark_value=0,earth_level=0,earth_value=0,
+            fire_level=0,fire_value=0,light_level=0,light_value=0,
+            water_level=0,water_value=0,wind_level=0,wind_value=0,
             bullet_speed=500,
             creeps_killed=0,
             elemental_effects=None,
@@ -52,39 +59,35 @@ class Tower(object):
         self.base_delay = base_delay
         self.base_range = base_range
 
-        #current attributes
-        self.damage = damage
-        self.delay = delay
-        self.range = range
-    
+        #Dictionary of attributes
         if attributes is None:
             attributes = { 
-                'damage': {'value': 1,
-                            'level': 1,
+                'damage': {'value': damage,
+                            'level': damage_level,
                             'modifier': 1.3},
-                'delay': {'value': 1000,
-                            'level': 1,
+                'delay': {'value': delay,
+                            'level': delay_level,
                             'modifier': 1.3},
-                'range': {'value': 3,
-                            'level': 1,
+                'range': {'value': range,
+                            'level': range_level,
                             'modifier': 3.1},
-                'elemental_dark': {'value': 0,
-                            'level': 0,
+                'elemental_dark': {'value': dark_value,
+                            'level': dark_level,
                             'modifier': 1.5},
-                'elemental_earth': {'value': 0,
-                            'level': 0,
+                'elemental_earth': {'value': earth_value,
+                            'level': earth_level,
                             'modifier': 1.5},
-                'elemental_fire': {'value': 0,
-                            'level': 0,
+                'elemental_fire': {'value': fire_value,
+                            'level': fire_level,
                             'modifier': 1.5},
-                'elemental_light': {'value': 0,
-                            'level': 0,
+                'elemental_light': {'value': light_value,
+                            'level': light_level,
                             'modifier': 1.5},
-                'elemental_water': {'value': 0,
-                            'level': 0,
+                'elemental_water': {'value': water_value,
+                            'level': water_level,
                             'modifier': 1.5},
-                'elemental_wind': {'value': 0,
-                            'level': 0,
+                'elemental_wind': {'value': wind_value,
+                            'level': wind_level,
                             'modifier': 1.5}
             }
         self.attributes = attributes
@@ -139,6 +142,11 @@ class Tower(object):
         #   some map
         self.map_reference = map_reference
 
+    '''=====================================================================
+
+    Methods
+
+    ========================================================================'''
     '''Upgrade Related Methods
     -------------------------------------'''
     def calc_upgrade_cost(self, type):
@@ -205,10 +213,10 @@ class Tower(object):
 
         #Store cells that fall in a radius of the tower
         #Store a loop length and range variable to keep track of radius
-        loop_length = self.range + 1
+        loop_length = self.attributes['range']['value'] + 1
 
-        count_i = -self.range
-        count_j = -self.range
+        count_i = -self.attributes['range']['value']
+        count_j = -self.attributes['range']['value']
 
         #reset the tower's cells in range list
         self.cells_in_range = []
@@ -228,13 +236,13 @@ class Tower(object):
 
                 count_j += 1
             #Reset count_j and increase count_i
-            count_j = -self.range
+            count_j = -self.attributes['range']['value']
             count_i += 1
 
         #Return the cells in range
         return self.cells_in_range
 
-    '''Attack
+    '''Attack Related Functions
     -------------------------------------'''
     def attack(self, target=None):
         '''Attack will attack the passed in target
@@ -259,7 +267,35 @@ class Tower(object):
         target_cell = self.map_reference.cell_objects[target.pos_i][
                 target.pos_j]
 
+        #List of targets affected by the tower's attack
+        targets_affects = [{'target':target,
+                            'damage': self.attributes['damage']['value']}]
 
+        '''---------------------------------
+        Elemental Effects
+        ---------------------------------'''
+        #DARK
+        #--------------------------------
+
+        #EARTH
+        #--------------------------------
+
+        #FIRE
+        #--------------------------------
+        if self.attributes['elemental_fire']['level'] > 0:
+            pass
+        
+        #LIGHT
+        #--------------------------------
+
+        #WATER
+        #--------------------------------
+        
+        #WIND
+        #--------------------------------
+        '''Deal damage to creep from base damage
+        ---------------------------------'''
+        target.take_damage(self.attributes['damage']['value'])
 
         '''Done with attack
         ---------------------------------'''
@@ -268,4 +304,4 @@ class Tower(object):
 
     def reset_attack_timer(self):
         '''Reset the attack timer.  Called when an attack is finished'''
-        self.attack_timer = self.base_delay
+        self.attack_timer = self.attributes['delay']['value']

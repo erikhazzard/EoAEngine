@@ -37,6 +37,11 @@ class Player(object):
         
         Player.amount_of_players += 1
 
+    '''=====================================================================
+
+    Methods
+
+    ========================================================================'''
     def update_gold(self, gold_amount):
         '''Update the player gold with the passed in amount  
             gold_amount: amount of gold to update.  Will likely be positive,
