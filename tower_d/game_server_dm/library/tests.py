@@ -79,7 +79,24 @@ class testTower(unittest.TestCase):
 
     def test_attack(self):
         #Test the attack method of a tower
-        self.tower.attack((0,0))
+        self.tower.map_reference = Map.Map()
+        self.tower.attack(Creep.Creep())
+        self.assertEquals(self.tower.attack(Creep.Creep(health=0)),
+                            None)
+        self.tower.attack_timer = 2
+        self.assertEquals(self.tower.attack(Creep.Creep()),
+                            None)
+
+    def test_attack_timer(self):
+        self.attack_timer = 0
+        self.tower.reset_attack_timer()
+        self.assertEquals(self.tower.attack_timer,
+                            self.tower.base_delay)
+
+        self.attack_timer = 0
+        self.tower.reset_attack_timer()
+        self.assertNotEquals(self.tower.attack_timer,
+                            self.tower.base_delay * 2)
 
     def tearDown(self):
         self.tower = None

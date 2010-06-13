@@ -24,7 +24,8 @@ class Tower(object):
             creeps_killed=0,
             elemental_effects=None,
             value=0,
-            base_cost=10):
+            base_cost=10,
+            map_reference=None):
         '''Update class variables'''
         Tower.towers_created += 1
 
@@ -129,7 +130,14 @@ class Tower(object):
         #The creep aggro list, which is a priority list of creeps the tower 
         #  wants to attack.  When a creep enters the tower radius, it is
         #  pushed to this list. When it leaves, it is removed
-        self.creep_aggro_array = {}
+        self.creep_aggro_array = []
+
+        #Map Reference
+        #--------------------------------
+        #Store a reference to the map object the tower belongs in.  Normally
+        #   we want to keep things modular, but a tower must always belong to
+        #   some map
+        self.map_reference = map_reference
 
     '''Upgrade Related Methods
     -------------------------------------'''
@@ -230,7 +238,34 @@ class Tower(object):
     -------------------------------------'''
     def attack(self, target=None):
         '''Attack will attack the passed in target
-            Target can be a creep or a cell position (e.g. (0,0))'''
+            Target is a creep object''' 
         if target is None:
-            return
+            return None
 
+        #See if attack timer is 0 (meaning tower can fire)
+        #   If the timer is above 0, return none
+        if self.attack_timer == 0:
+            return None
+        
+        #If the target is dead, remove it from the aggro list
+        if target.health <= 0:
+            if target in self.creep_aggro_array:
+                self.creep_aggro_array.remove(target)
+            return None
+        
+        '''Attack!
+        ---------------------------------'''
+        #Get the cell that the creep occupies
+        target_cell = self.map_reference.cell_objects[target.pos_i][
+                target.pos_j]
+
+
+
+        '''Done with attack
+        ---------------------------------'''
+        #The atack has finished, so reset the timer
+        self.reset_attack_timer()
+
+    def reset_attack_timer(self):
+        '''Reset the attack timer.  Called when an attack is finished'''
+        self.attack_timer = self.base_delay

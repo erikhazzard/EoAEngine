@@ -69,6 +69,8 @@ class Map(object):
             [24,1],[24,0]
         ] 
 
+        #Store a list of cell objects (generated from create_cells())
+        self.cell_objects = [[]]
         #Call function to create the cells for the map
         self.create_cells()
 
