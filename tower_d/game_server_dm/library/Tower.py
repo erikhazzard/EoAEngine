@@ -190,16 +190,52 @@ class Tower(object):
         #Calculate the cost based on the type
         cost = self.calc_upgrade_cost(type)
 
-        if cost <= player_gold:
-            #Upgrade the type
-            self.attributes[type]['level'] += 1
-
-            #Return the cost
-            return cost
-
-        else:
+        #See if the type can be upgraded
+        if cost > player_gold:
             #Player does not have enough money
             raise MoneyAmountError('Insufficient Funds!') 
+        else:
+            #Upgrade the type's level
+            self.attributes[type]['level'] += 1
+
+            '''---------------------------------
+            Upgrade Elemental Effects
+            ---------------------------------'''
+            #DARK
+            #--------------------------------
+            if type == 'elemental_dark':
+                #Set the number of tickets
+                self.elemental_effects['dark']['tick_number'] = 2 + math.ceil(
+                    self.attributes['elemental_dark']['level'] / 10)
+
+                #Damage per tick
+                self.elemental_effects['dark']['tick_damage'] = math.ceil(
+                        self.attributes['elemental_dark']['level'] * .2) +
+                        (self.attributes['damage'] * .2)
+
+                #Delay per tick
+                self.elemental_effects['dark']['tick_delay'] = 5 - math.log(
+                        1 + (self.attributes['elemental_dark']['level'] * .2))
+
+            #EARTH
+            #--------------------------------
+            elif type == 'elemental_earth':
+                pass
+            #FIRE
+            #--------------------------------
+            elif type == 'elemental_fire':
+                pass
+            
+            #LIGHT
+            #--------------------------------
+
+            #WATER
+            #--------------------------------
+            
+            #WIND
+            #--------------------------------
+            #Return the cost
+            return cost
 
     '''Update Cells in Range
     -------------------------------------'''
@@ -271,28 +307,6 @@ class Tower(object):
         targets_affects = [{'target':target,
                             'damage': self.attributes['damage']['value']}]
 
-        '''---------------------------------
-        Elemental Effects
-        ---------------------------------'''
-        #DARK
-        #--------------------------------
-
-        #EARTH
-        #--------------------------------
-
-        #FIRE
-        #--------------------------------
-        if self.attributes['elemental_fire']['level'] > 0:
-            pass
-        
-        #LIGHT
-        #--------------------------------
-
-        #WATER
-        #--------------------------------
-        
-        #WIND
-        #--------------------------------
         '''Deal damage to creep from base damage
         ---------------------------------'''
         target.take_damage(self.attributes['damage']['value'])
