@@ -6,6 +6,7 @@ Tower class for the game DM
 ============================================================================='''
 from custom_exceptions import *
 
+import math
 '''========================================================================
 
 Tower
@@ -142,6 +143,7 @@ class Tower(object):
         #   some map
         self.map_reference = map_reference
 
+
     '''=====================================================================
 
     Methods
@@ -220,20 +222,28 @@ class Tower(object):
             #EARTH
             #--------------------------------
             elif type == 'elemental_earth':
-                pass
-            #FIRE
-            #--------------------------------
-            elif type == 'elemental_fire':
-                pass
-            
-            #LIGHT
-            #--------------------------------
+                #Set the slow amount
+                self.elemental_effects['earth']['slow_amount'] = \
+                    self.attributes['elemental_earth']['level'] * 10
 
-            #WATER
-            #--------------------------------
-            
+                #Set the slow duration
+                self.elemental_effects['earth']['slow_duration'] = \
+                    self.attributes['elemental_earth']['level'] * 100
+
             #WIND
             #--------------------------------
+            elif type == 'elemental_wind':
+                #Set the stun chance
+                self.elemental_effects['wind']['stun_chance'] = 15 + (
+                    math.ceil(self.attributes['elemental_wind']['level'] / 3))
+
+                #Set the stun duration
+                self.elemental_effects['wind']['stun_duration'] = (.2 + (
+                    math.ceil(self.attributes['elemental_wind']['level'] / 50)
+                    ) * 1000)
+
+
+
             #Return the cost
             return cost
 
@@ -304,8 +314,12 @@ class Tower(object):
                 target.pos_j]
 
         #List of targets affected by the tower's attack
-        targets_affects = [{'target':target,
+        targets_affected = [{'target':target,
                             'damage': self.attributes['damage']['value']}]
+
+        '''Elemental Effects
+        ---------------------------------'''
+        #TODO: Add elemental effects
 
         '''Deal damage to creep from base damage
         ---------------------------------'''
