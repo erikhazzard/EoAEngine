@@ -212,7 +212,7 @@ class Tower(object):
 
                 #Damage per tick
                 self.elemental_effects['dark']['tick_damage'] = math.ceil(
-                        self.attributes['elemental_dark']['level'] * .2) +
+                        self.attributes['elemental_dark']['level'] * .2) + \
                         (self.attributes['damage'] * .2)
 
                 #Delay per tick

@@ -11,9 +11,13 @@
  *==========================================================================*/
 body, html {
     background:#cdcdcd;
+    bottom:0;
     font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif !important;
 	margin:0;
 	padding:0;
+    position:absolute;
+    top:0;
+    width:100%;
 }
 
 a {
@@ -32,7 +36,7 @@ a:hover {
 #site_wrapper {
     bottom:0;
     left:0;
-    position:relative;
+    position:absolute;
     right:0;
     top:0;
 }
@@ -41,6 +45,7 @@ a:hover {
         left:0;
         background:#ffffff;
         margin:0 auto;
+        position:absolute;
         right:0;
         top:0;
     }
@@ -51,11 +56,11 @@ a:hover {
  * --------------------------------*/
 #header_wrapper{
     border-bottom:2px solid #343434;
-    height:75px;
+    height:13%;
     position:relative;
 }
     #header {
-        padding:0 10px;
+        padding:0 1%;
         position:relative;
     }
     /*---------------------------------
@@ -106,8 +111,7 @@ a:hover {
      * Links
      * --------------------------------*/
     #site_links_wrapper {
-        border-bottom:2px solid #343434;
-        height:50px;
+        height:8%;
     }
      
 /*---------------------------------
@@ -115,6 +119,11 @@ a:hover {
  * Content
  *
  * --------------------------------*/    
+#content_wrapper {
+    background:#dedede;
+    height:72%;
+    z-index:1000;
+}
 
 
 /*---------------------------------
@@ -122,6 +131,12 @@ a:hover {
  * Footer
  *
  * --------------------------------*/    
+#footer_wrapper {
+    bottom:0;
+    height:7%;
+    position:absolute;
+    z-index:100;
+}
 /*==========================================================================
  *
  *  Site Layout Classes
