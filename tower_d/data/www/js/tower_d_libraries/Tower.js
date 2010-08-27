@@ -65,8 +65,8 @@ var Tower = new Class({
 
         //How far out the towers can shoot (in cells)
         level_range: 0,
-        base_range: 3,
-        range: 3,
+        base_range: 2,
+        range: 2,
         
         //Spped the bullet moves
         bullet_speed: 500,

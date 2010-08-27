@@ -49,11 +49,11 @@
 }
     #game_world {
         border:2px solid #000000;
-        height:436px;
+        height:448px;
         margin:0 auto;
         overflow:hidden;
         position:relative;
-        width:600px;
+        width:608px;
     }
 /*---------------------------------
  * Right Side Bar
@@ -80,7 +80,8 @@
  * --------------------------------*/
     #map_container {
         /*The background is a map passed in.  This will be
-            procedurally generated*/
+            procedurally generated. Width and height are defined 
+            in #game_world */
         background:#225577 url(/tower_d/static/images/maps/map_1.png);
         height:100%;
         left:0;
@@ -96,24 +97,23 @@
         /*This grid container will show the grid overlaied on the map
          *  It is faster to show a single div overlaid vs. stylying many 
          *  cells individually */
-        #grid_display_container {
-            background:#225588 url(/tower_d/static/images/maps/cell_bg_24_24.png);
-            height:436px;
-            left:0;
-            position:absolute;
-            top:0;
-            width:600px;
-        }
-
         #grid_container {
-            height:436px;
+            height:448px;
             position:relative;
-            width:600px;
+            width:608px;
         }
+                #grid_display_container {
+                    background:#225588 url(/tower_d/static/images/maps/cell_bg_24_24.png);
+                    height:448px;
+                    left:0;
+                    position:absolute;
+                    top:0;
+                    width:608px;
+                }
+
             /*Cells*/
             .grid_cell {
-                background: rgba(50,100,150,.2);
-                _background: #225588;
+                background: #225588;
                 border-bottom: 1px solid rgba(0,0,0,.2);
                 border-right: 1px solid rgba(0,0,0,.2);
                 _border-bottom: 1px solid #232323;

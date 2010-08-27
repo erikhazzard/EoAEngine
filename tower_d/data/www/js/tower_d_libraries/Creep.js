@@ -27,7 +27,7 @@ var Creep= new Class({
                 },
 
         //Grid position
-        pos_x: 1,
+        pos_x: 0,
         pos_y: 0,
         //position in the map's path array
         pos_path: 0,
@@ -397,7 +397,7 @@ var Creep= new Class({
        
         //Check if creep has reached the goal
         //TODO: THIS SHOULD BE AN EVENT
-        if(i === 0 && j === 24){
+        if(i === 0 && j === 18){
             //i,j are the end goal in this case
             this.reached_goal();
         }
