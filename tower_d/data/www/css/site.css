@@ -73,6 +73,13 @@ input[type=submit]:hover, input[type=button]:hover, input[type=password]:hover, 
     box-shadow: 0 0 3px #505050;
     text-shadow:0 1px 0 #ffffff;
 }
+/*Click*/
+input[type=submit]:active, input[type=button]:active {
+    -moz-box-shadow: 0 0 5px #505050 inset;
+    -webkit-box-shadow: 0 0 5px #505050 inset;
+    box-shadow: 0 0 5px #505050 inset;
+    color: #494950;
+}
 
 input[type=checkbox] {
     width:1em !important;
@@ -186,11 +193,21 @@ input[type=checkbox] {
             text-align:right;
         }
             #account_bar_logged_out input {
-                margin:0 0 0 1em;
+                letter-spacing: .12em;
+                margin:0 0 0 1.5em;
+                text-shadow:0 1px 0 #d0d0d0;
+            }
+            /*Login button*/
+            #login_button_register {
+                font-size:1em;
+                font-weight: normal;
+                width:30%;
             }
             #login_button_login {
-                width:40%;
+                font-size:1.2em;
+                width:50%;
             }
+
         #login_password_wrapper, #login_username_wrapper {
             float:left;
             margin:0 10px 0 0;
