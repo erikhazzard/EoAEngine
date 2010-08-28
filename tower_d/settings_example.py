@@ -1,36 +1,52 @@
-"""=============================================================================
+'''=============================================================================
     Settings.py
     ------------
     Handles server specific settings.  Also contains state-specific settings
-============================================================================="""
+============================================================================='''
 #Debug settings
 #----------------------------------------
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+
+#Path settings
+#----------------------------------------
+import os
+TOWER_D_ROOT_URL = '/tower_d/'
+ROOT_URL = 'game'
+TOWER_D_PATH = '/home/erik/Code/EoAEngine'
+ROOT_PATH = os.path.join(TOWER_D_PATH, 'tower_d')
+
+#Set Cookie age
+SESSION_COOKIE_AGE = 180000
+
+'''Database Settings'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.db',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
+    },
+}
+
+'''EMail Settings'''
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'vasirr.tower.d@gmail.com'
+EMAIL_HOST_PASSWORD = '_______'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+'''--------------------------------------
+    Constants
+    -------------------------------------'''
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
 
 MANAGERS = ADMINS
-
-"""Set up paths"""
-import os
-TOWER_D_ROOT_URL = '/tower_d/'
-TOWER_D_PATH = '/home/erik/Code/EoAEngine'
-ROOT_PATH = os.path.join(TOWER_D_PATH, 'tower_d')
-
-"""database settings"""
-DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = os.path.join(ROOT_PATH, 'db.db' )            # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
-
-
-#Set Cookie age
-SESSION_COOKIE_AGE = 180000
 
 #Set default login url
 #Should this use os.path.join?
@@ -52,6 +68,10 @@ SITE_ID = 1
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
+
+# If you set this to False, Django will not format dates, numbers and
+# calendars according to the current locale
+USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -80,18 +100,18 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    
+    'django.middleware.csrf.CsrfResponseMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.core.context_processors.auth",
+    "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
-    #No need for dojango
-    #"dojango.context_processors.config",
 )
 
 ROOT_URLCONF = 'tower_d.urls'
@@ -108,7 +128,7 @@ FIXTURES_DIRS = (
     os.path.join(ROOT_PATH, 'data/fixtures'),
 )
 
-AUTH_PROFILE_MODULE="accounts.Account"
+AUTH_PROFILE_MODULE= 'accounts.Account'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -116,6 +136,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.messages',
     'tower_d.game',
     'tower_d.accounts',
 )

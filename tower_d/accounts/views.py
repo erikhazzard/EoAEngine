@@ -66,7 +66,7 @@ def logout(request):
     """Logouts the user by calling django's biult in logout function"""
     
     django_logout(request)
-    return HttpResponseRedirect('/tower_d/game/')
+    return HttpResponseRedirect('/%s/' % settings.ROOT_URL)
 
 '''----------------------
 Register

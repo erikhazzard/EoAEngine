@@ -9,6 +9,7 @@
  *  Add tips 
  * ===============================*/
 var Tool_Tips = {}; 
+var roar_object= {};
 
 /*===========================================================================
 
@@ -25,5 +26,10 @@ window.addEvent('domready', function(){
     Tool_Tips = new Tips($$('.tool_tip'),{
             className: 'tool_tip_custom',
             fixed: true
+    });
+    
+    //Set up Roar
+    roar_object = new Roar({
+        position: 'bottomRight'
     });
 })

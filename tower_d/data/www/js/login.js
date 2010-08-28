@@ -36,9 +36,13 @@ window.addEvent('domready', function(){
             }
         });
     }
+
+    /* ===================================
+     * Submit button
+     * ===================================*/
     //Login Submit Button
-    if($('login_submit')){
-        $('login_submit').addEvent('click', function(){
+    if($('login_button_login')){
+        $('login_button_login').addEvent('click', function(){
             /*Make a request to the login page*/
             var req = new Request({
                 url: url_root + url_account_login,
@@ -48,20 +52,46 @@ window.addEvent('domready', function(){
 
                 //Correct username / pw
                 onSuccess: function(res){
-                    $('login_wrapper').highlight('#22aa22');
+                    //Show the wrapper
+                    $('login_log').setStyle('display', 'block');
+                    
+                    //Add the success class
+                    $('login_log').removeClass('notification_error');
+                    $('login_log').addClass('notification_success');
+                    
+                    //Show the log
+                    $('login_log').fade(1);
+
+                    //Set the HTML
                     $('login_log').innerHTML = "Redirecting...";
-                    window.location = url_root + url_game;
+
+                    //Reload page
+                    window.location.reload();
                 },
                 
                 //Wrong username / pw
                 onFailure: function(res){
+                    //Show the wrapper
+                    $('login_log').setStyle('display', 'block');
+                    $('login_log').addClass('notification_error');
+                    //Show the log
+                    $('login_log').fade(1);
+
+                    //Set the HTML
                     $('login_log').innerHTML = "Invalid username or password";
-                    $('login_wrapper').highlight('#aa2222');
+
+                    //Show alert
+                    if(SITE_ROAR_ENABLED == true){
+                        roar_object.alert('Invalid login details', 'Unable to login');
+                    }
                 }
             }).send();
         });
     }
 
+    /* ===================================
+     * Register button 
+     * ===================================*/
     //Register Submit Button
     if($('register_submit')){
         $('register_submit').addEvent('click', function(){
@@ -114,6 +144,8 @@ window.addEvent('domready', function(){
 =============================================================================*/
 function update_login_password(){
         $('login_password_placeholder').fade(0);
+        $('login_password_placeholder').setStyle('display', 'none');
+        $('login_password').setStyle('display', 'block');
         $('login_password').setStyle('opacity',1);
         $('login_password').focus();
 }

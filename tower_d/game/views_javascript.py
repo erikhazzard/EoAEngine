@@ -57,6 +57,11 @@ def generate_config(request):
     //Game Functions
     var url_game_heartbeat = '%(url_game_heartbeat)s';
 
+    //-----------------------------------
+    //Global Site Settings
+    //-----------------------------------
+    var SITE_ROAR_ENABLED = true;
+
     """
 
     #Build values to insert in the response

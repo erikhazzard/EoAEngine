@@ -10,10 +10,13 @@
  *
  *==========================================================================*/
 body, html {
+    -webkit-font-smoothing: antialiased;
     background:#cdcdcd;
     bottom:0;
+    color:#2C2D32;
     font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif !important;
 	margin:0;
+    overflow: hidden;
 	padding:0;
     position:absolute;
     top:0;
@@ -27,6 +30,52 @@ a {
 }
 a:hover {
     color:#343434;
+}
+
+img {
+    border: none;
+}
+/* ---------------------- */
+/*   Input                */
+/* ---------------------- */
+
+/*Input text boxes*/
+input[type=text], input[type=submit], input[type=text], input[type=password]{
+    -moz-box-shadow: 0 1px 4px #e0e0e0 inset;
+    -webkit-box-shadow: 0 1px 4px #e0e0e0 inset;
+    box-shadow: 0 1px 4px #e0e0e0 inset;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    border: 1px solid #adadad;
+    color: #2C2D32;
+    padding:2px;    
+    vertical-align:top;
+}
+
+input[type=submit], input[type=button]{
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    border:1px solid #787878;
+    background:#c2c2c2 url(../images/layout/button_background.png) repeat-x;
+    color:#2C2D32;
+    cursor: pointer;
+    font-size:1.1em;
+    font-weight:bold;
+    padding:.3em 1em;
+    text-align:center;
+    text-shadow:0 1px 0 #ffffff;
+}
+input[type=submit]:hover, input[type=button]:hover, input[type=password]:hover,  input[type=text]:hover  {
+    -moz-box-shadow: 0 0 3px #505050;
+    -webkit-box-shadow: 0 0 3px #505050;
+    box-shadow: 0 0 3px #505050;
+    text-shadow:0 1px 0 #ffffff;
+}
+
+input[type=checkbox] {
+    width:1em !important;
 }
 /*==========================================================================
  *
@@ -55,6 +104,7 @@ a:hover {
  *
  * --------------------------------*/
 #header_wrapper{
+    background: #353535;
     border-bottom:2px solid #343434;
     height:13%;
     position:relative;
@@ -67,46 +117,169 @@ a:hover {
      * Logo
      * --------------------------------*/
     #logo {
-        font-size:1.2em;
-        font-weight:bold;
-        text-shadow:1px 1px #dedede;
+        color: #f0f0f0;
+        font-size:1.4em;
+        font-weight: bold;
+        font-variant: small-caps;
+        text-shadow: 0 1px 0 #787878;
     }
     /*---------------------------------
+     *
      * Login Area
+     *
      * --------------------------------*/
-    #login_wrapper {
-        border:1px solid #343434;
-        font-size:.9em;
-        height:70px;
+    #account_bar_wrapper {
+        -moz-border-radius-bottomleft:5px;
+        -moz-border-radius-bottomright:5px;
+        -webkit-border-bottom-left-radius:5px;
+        -webkit-border-bottom-right-radius:5px;
+        border-bottom-left-radius:5px;
+        border-bottom-right-radius:5px;
+        -moz-box-shadow: 0 1px 2px #ababab;
+        -webkit-box-shadow: 0 1px 2px #ababab;
+        box-shadow: 0 1px 2px #ababab;
+   
+        border:1px solid #ababab; 
+        border-top:none;
         position:absolute;
-        right:10px;
+        right:1em;
+        text-align:left;
         top:0;
-        width:375px;
-        z-index:10;
+        width:400px;
     }
-        #login {
-            padding:2px;
+        #account_bar {
+            -moz-border-radius-bottomleft:5px;
+            -moz-border-radius-bottomright:5px;
+            -webkit-border-bottom-left-radius:5px;
+            -webkit-border-bottom-right-radius:5px;
+            border-bottom-left-radius:5px;
+            border-bottom-right-radius:5px;
+            background:#e7e7e7 url(../images/layout/account_bar_background.png) repeat-x;
+            border:1px solid #ffffff;
+            border-top:none;
+            padding:5px;
+            position:relative;
+            text-shadow:0 1px 0 #ffffff;
         }
-            #login_password_wrapper, #login_username_wrapper {
-                float:left;
-                margin:0 10px 0 0;
-                position:relative;
+        #account_bar ul li {
+            display:block;
+            float:left;
+        }
+
+        #account_bar input[type=text], #account_bar input[type=password] {
+            font-size: .9em;
+            font-weight: bold;
+            letter-spacing: .2em;
+        }
+
+        /*Top of account bar*/
+        #account_bar_top {
+            margin:0 0 5px 0;
+            position:relative;
+        }
+
+        /*---------------------------
+         * Logged out div
+         * --------------------------*/
+        #account_bar_logged_out {
+            font-size:.8em;
+            text-align:right;
+        }
+            #account_bar_logged_out input {
+                margin:0 0 0 1em;
             }
-                #login_password_placeholder {
-                    color:#ababab;
-                    font-size:.9em;
-                    left:0;
-                    position:absolute;
-                    top:0;
-                }
-                #login_username, #login_password, #login_password_placeholder{
-                    height:20px;
-                    width:150px;
-                }
-            #login_action_wrapper {
-                clear:both;
-                position:relative;
+            #login_button_login {
+                width:40%;
             }
+        #login_password_wrapper, #login_username_wrapper {
+            float:left;
+            margin:0 10px 0 0;
+            position:relative;
+        }
+            #login_password_placeholder {
+                color:#ababab;
+                font-size:.9em;
+                left:0;
+                position:absolute;
+                top:0;
+            }
+            #login_username, #login_password, #login_password_placeholder{
+                height:22px;
+                width:160px;
+            }
+        #login_action_wrapper {
+            clear:both;
+            position:relative;
+        }
+            /*Login submit button*/
+            #login_submit {
+                width:85px;
+            }
+
+        /*Login log*/
+        #login_log {
+        }
+
+        /* Logged In Account Bar 
+        /* ----------------- */
+        /*Username and Fullname*/
+            #account_bar_username {
+                border-bottom:1px solid #cdcdcd;
+                height:22px;
+                font-size:.8em;
+                padding:0 0 5px 0;
+                text-align:right;
+            }
+                .account_bar_username_name {
+                    font-size:1.2em;
+                    font-weight:bold;
+                }
+                    .account_bar_username_name a:hover, #account_bar_username a:hover {
+                        -moz-box-shadow: 0 1px 0 #454545 inset;
+                        -webkit-box-shadow: 0 1px 0 #454545 inset; 
+                        box-shadow: 0 1px 0 #454545 inset; 
+                        color:#f0f0f0;
+                    }
+            #account_bar_fullname {
+                font-size:.8em;
+                position:absolute;
+                right:0;
+                top:2px;
+            }
+
+        /* Bottom of account bar
+        /* ----------------- */
+        #account_bar_bottom {
+            font-size:.8em;
+            position:relative;
+        }
+            #account_bar_bottom a {
+                -moz-box-shadow: none;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                background: none;
+                border: none;
+                font-weight:bold;
+            }
+            #account_bar_bottom a:hover {
+                background:none;
+                border: none;
+                color:#336699;
+                text-decoration:underline;
+                text-shadow:0 1px 0 #ffffff;
+            }
+            #account_bar_link_logout {
+                bottom:0;
+                position:absolute;
+                right:0;
+            }
+            /*Register / forgot PW */
+            #account_bar_register {
+                margin:0 0 5px 0;
+            }
+                #account_bar_register a{
+                    margin:0 10px 0 0; 
+                }
     /*---------------------------------
      * Links
      * --------------------------------*/
@@ -145,6 +318,40 @@ a:hover {
 .clear {
     clear:both;
 }
+
+.hidden_element {
+    display:none;
+}
+/*---------------------------------------
+ * Notification Related
+ * --------------------------------------*/
+.notification {
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    background:#f2f2d0;
+    border:1px solid #B0B0B0;
+    color:#2C2D32;
+    font-weight:bold;
+    padding:2px 4px;
+    text-shadow: 0 0 1px #ffffff;
+}
+.notification_error {
+    background: #A94040;
+    border:1px solid #a0a0a0;
+    color:#f0f0f0;
+    text-shadow:0 1px 0 #787878;
+}
+.notification_success {
+    background:#6DCA5C;
+    border:1px solid #707070;
+    color:#f0f0f0;
+    text-shadow: 0 0 1px #787878;
+}
+
+/*---------------------------------------
+ * Tool Tip Related
+ * --------------------------------------*/
 .tool_tip_class {
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
