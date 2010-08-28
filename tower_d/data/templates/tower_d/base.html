@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<html xmlns='http://www.w3.org/1999/xhtml' lang='en-us' xml:lang='en-us'>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
     <title>{% block head_title %}Elemental Browser Tower Defense{% endblock head_title %}
         {% block head_title_extra %}{% endblock head_title_extra %}
     </title>
@@ -124,16 +124,37 @@
         </div>
     {% endblock footer_container %}   
     <!-- ========= FOOTER END ========================================= -->
+
 </div>
 </div>
+
+<!-- ========= SITE POPUP WINDOW ====================================== -->        
+<div id='site_popup_window' class='hidden_element'>
+    <div id='site_popup_inner_wrapper'>
+        <div id='site_popup_title'></div>
+        <div id='site_popup_close_button_wrapper'>
+            <a href='#' id='id_window_close_button'>X</a>
+        </div>
+        <div id='site_pop_up_content_wrapper'>
+            <div id='site_pop_up_content'>
+                Blar
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ========= SITE POPUP WINDOW END ================================== -->        
 {% endblock site_container %}
 
 <!-- ================================================================== -->
 <!-- JavaScript                                                         -->
 <!-- ================================================================== -->
+    <!-- Google API Key -->
+    <script src='http://www.google.com/jsapi?key=ABQIAAAAIKnay6FXRbCarRCLzp6OSBTjI4kQ5jWaSZ5e8WofWEgFmJypJBQj-WUPtqimqQyKcVtdAYGfGzwupQ' type='text/javascript'></script>
+
     <!-- External JS Libraries -->
-	<script src='/tower_d/static/js/third_party/mootools.js' 
-            type='text/javascript'></script>
+    <script type='text/javascript'>
+        google.load('mootools', '1.2.4');
+    </script>
 	<script src='/tower_d/static/js/third_party/mootools_more.js' 
             type='text/javascript'></script>
 	<script src='/tower_d/static/js/third_party/mootools_roar.js' 
@@ -148,9 +169,6 @@
 
     <!-- Login -->
     <script src='/tower_d/static/js/site/login.js' type='text/javascript'></script>
-
-    {% block extra_head_js %}{% endblock extra_head_js %}
-
 {% block bottom_javascript %}
 
 {% endblock %}
