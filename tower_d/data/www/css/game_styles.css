@@ -15,12 +15,25 @@
 #game_container {
     bottom:0;
     left:0;
-    height:450px;
+    height:100%;
     overflow:hidden;
     position:relative;
     right:0;
     top:0;
 }
+    #game_container_loading_message {
+        background:#efefef;
+        bottom:0;
+        font-size:4em;
+        font-variant: small-caps;
+        left:0;
+        padding:5%;
+        position:absolute;
+        right:0;
+        text-align:center;
+        top:0;
+        z-index:9999;
+    }
  /*---------------------------------
  * Left Side Bar
  * --------------------------------*/
@@ -50,7 +63,7 @@
     #game_world {
         border:2px solid #000000;
         height:448px;
-        margin:0 auto;
+        margin:1% auto;
         overflow:hidden;
         position:relative;
         width:608px;
@@ -275,6 +288,7 @@
 }
 #tower_selected_wrapper, #creep_selected_wrapper{
     border:1px solid #343434;
+    font-size:.9em;
     position:relative;
     margin:10px 0 0 0;
     width:100%;

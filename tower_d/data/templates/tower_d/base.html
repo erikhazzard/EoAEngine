@@ -47,38 +47,17 @@
                                 </span>
                             </div>
                         {% else %}
-                            <!-- Login Form -->
-                            <!--
-                                <div id='login_username_wrapper'>
-                                    <input id='login_username'
-                                        name='login_username' type='text'
-                                        value='Username'
-                                        tabindex='1' />
-                                </div>
-                                <div id='login_password_wrapper'>
-                                    <input id='login_password'
-                                        name='login_password' type='password'
-                                        class='hidden_element' tabindex='3'/>
+                            <div id='account_bar_logged_out'>
+                                <!-- Register -->
+                                <input id='login_button_register' type='button' 
+                                    value='Register' tabindex='2' />
 
-                                    <input id='login_password_placeholder' 
-                                        type='text' value='Password'
-                                        tabindex='2' />
-                                </div>
-                                -->
-
-                                <!-- Login error / success message -->
-                                <!-- <div id='login_log' class='notification hidden_element'></div> -->
-                                <div id='account_bar_logged_out'>
-                                    <!-- Register -->
-                                    <input id='login_button_register' type='button' 
-                                        value='Register' tabindex='2' />
-
-                                    <!-- Login -->
-                                    <input id='login_button_login' type='button' 
-                                        value='Login' tabindex='1' />
-                                    <div class='clear'></div>
-                                </div>
-                            {% endif %}
+                                <!-- Login -->
+                                <input id='login_button_login' type='button' 
+                                    value='Login' tabindex='1' />
+                                <div class='clear'></div>
+                            </div>
+                        {% endif %}
                         <div class='clear'></div>
                     </div>
                     {% if user.is_authenticated %}
@@ -129,15 +108,77 @@
 </div>
 
 <!-- ========= SITE POPUP WINDOW ====================================== -->        
-<div id='site_popup_window' class='hidden_element'>
-    <div id='site_popup_inner_wrapper'>
-        <div id='site_popup_title'></div>
+<div id='site_popup_window' class='hidden_element display_none'>
+    <div id='site_popup_window_inner_wrapper'>
+        <div id='site_popup_title'>Login</div>
         <div id='site_popup_close_button_wrapper'>
             <a href='#' id='id_window_close_button'>X</a>
         </div>
-        <div id='site_pop_up_content_wrapper'>
-            <div id='site_pop_up_content'>
-                Blar
+        <div id='site_popup_content_wrapper'>
+            <div id='site_popup_content'>
+            <!-- ========================
+                 LOGIN
+                 ======================== -->
+                <div id='popup_login_wrapper' class='hidden_element display_none'>
+                <div id='popup_login'>
+                    <div id='popup_login_left_side_wrapper'>
+                    <div id='popup_login_left_side_inner'>
+                    <div id='popup_login_left_side'>
+                        Why you should login
+                    </div>
+                    </div>
+                    </div>
+                    <div id='popup_login_right_side_wrapper'>
+                    <div id='popup_login_right_side'>
+                        <div id='popup_login_input_wrapper'>
+                            <!-- Login Form -->
+                            <div id='login_username_wrapper'>
+                                <input id='login_username'
+                                    name='login_username' type='text'
+                                    value='Username'
+                                    tabindex='2' />
+                            </div>
+                            <div id='login_password_wrapper'>
+                                <input id='login_password'
+                                    name='login_password' type='password'
+                                    class='hidden_element' tabindex='4'/>
+
+                                <input id='login_password_placeholder' 
+                                    type='text' value='Password'
+                                    tabindex='3' />
+                            </div>
+                            <div id='popup_login_button_wrapper'>
+                                <div id='popup_login_forgot_pw_wrapper'>
+                                    <a id='popup_login_forgot_pw' title='Forgot Password'
+                                        rel='nofollow' href='#'>Forgot Password?</a>
+                                </div>
+                                <!-- Login -->
+                                <input id='popup_login_button_login' type='button' 
+                                    value='Login' tabindex='5' />
+                            </div>
+
+                            <!-- Other login options -->
+                            <div id='popup_login_third_party_wrapper'>
+                                <h2>Login Using</h2>
+                                <a href='#' id='popup_login_third_party_google' title='Login with Google'>
+                                    <img src='/tower_d/static/images/layout/google.png' alt='Google' /> 
+                                </a>
+                                <a href='#' id='popup_login_third_party_twitter' title='Login with Twitter'>
+                                    <img src='/tower_d/static/images/layout/twitter.png' alt='Twitter' /> 
+                                </a>
+                                <a href='#' id='popup_login_third_party_facebook' title='Login with Facebook'>
+                                    <img src='/tower_d/static/images/layout/facebook.png' alt='Facebook' /> 
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Login error / success message -->
+                        <div id='login_log' class='notification hidden_element'></div>
+
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>

@@ -17,12 +17,22 @@ var Map_Object = {};
 
 var creep_list = [];
 var c1, c2;
+
+//Set the page's cursor to be wait until page loads
 /*===========================================================================
 
   On DOMReady Events
 
 =============================================================================*/
 window.addEvent('domready', function(){
+    /*================================
+     *
+     * Remove Loading Indicators
+     *
+     * ===============================*/
+    //Remove loading message
+    $('game_container_loading_message').setStyle('display', 'none');
+
     /*================================
      *
      * Initial map setup
