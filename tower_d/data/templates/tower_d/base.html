@@ -49,11 +49,11 @@
                         {% else %}
                             <div id='account_bar_logged_out'>
                                 <!-- Register -->
-                                <input id='login_button_register' type='button' 
+                                <input id='account_bar_button_register' type='button' 
                                     value='Register' tabindex='2' />
 
                                 <!-- Login -->
-                                <input id='login_button_login' type='button' 
+                                <input id='account_bar_button_login' type='button' 
                                     value='Login' tabindex='1' />
                                 <div class='clear'></div>
                             </div>
@@ -107,7 +107,9 @@
 </div>
 </div>
 
-<!-- ========= SITE POPUP WINDOW ====================================== -->        
+<!-- ================================================================== -->        
+<!--            SITE POPUP WINDOW                                       -->
+<!-- ================================================================== -->        
 <div id='site_popup_window' class='hidden_element display_none'>
     <div id='site_popup_window_inner_wrapper'>
         <div id='site_popup_title'></div>
@@ -119,7 +121,7 @@
             <!-- ========================
                  LOGIN
                  ======================== -->
-                <div id='popup_login_wrapper' class='hidden_element display_none'>
+                <div id='popup_login_wrapper' class='hidden_element display_none popup_window_item'>
                 <div id='popup_login'>
                     <div id='popup_login_left_side_wrapper'>
                     <div id='popup_login_left_side_inner'>
@@ -184,9 +186,9 @@
             <!-- ========================
                  REGISTER 
                  ======================== -->
-                <div id='popup_regster_wrapper' class='hidden_element display_none'>
+                <div id='popup_register_wrapper' class='hidden_element display_none popup_window_item'>
                 <div id='popup_register'>
-                    
+                    login 
                 </div>
                 </div>
 
@@ -221,6 +223,8 @@
 
     <!-- Login -->
     <script src='/tower_d/static/js/site/login.js' type='text/javascript'></script>
+    <!-- Register -->
+    <script src='/tower_d/static/js/site/register.js' type='text/javascript'></script>
 {% block bottom_javascript %}
 
 {% endblock %}

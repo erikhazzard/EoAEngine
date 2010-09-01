@@ -349,6 +349,7 @@ input[type=checkbox] {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
+    background: url("../images/layout/sidebar_item_background.png") repeat-x scroll 0 0 #DBDBDB;
     border:1px solid #ffffff;
     bottom:0;
     left:0;

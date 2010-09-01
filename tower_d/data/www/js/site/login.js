@@ -17,15 +17,21 @@ window.addEvent('domready', function(){
      * Account Bar
      * ===================================*/
     //Login Submit Button
-    if($('login_button_login')){
-        $('login_button_login').addEvent('click', function(e){
+    if($('account_bar_button_login')){
+        $('account_bar_button_login').addEvent('click', function(e){
             //Don't close the popup window if it is open
             e.stop();
+
+            //Hide other wrappers
+            hide_popup_windows();
     
             //Toggle the popup window
             toggle_popup_window();
+
             //Set the popup window title
             $('site_popup_title').set('html', 'Login');
+
+            //Show popup login wrapper
             $('popup_login_wrapper').setStyle('display', 'block');
             $('popup_login_wrapper').setStyle('opacity', 1);
         });

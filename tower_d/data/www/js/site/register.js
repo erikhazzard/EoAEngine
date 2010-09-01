@@ -17,15 +17,21 @@ window.addEvent('domready', function(){
      * Account Bar
      * ===================================*/
     //Register Submit Button
-    if($('register_button')){
-        $('register_button').addEvent('click', function(e){
+    if($('account_bar_button_register')){
+        $('account_bar_button_register').addEvent('click', function(e){
             //Don't close the popup window if it is open
             e.stop();
-    
+
+            //Hide other wrappers
+            hide_popup_windows();
+
             //Toggle the popup window
             toggle_popup_window();
-                //Set the popup window title
-                $('site_popup_title').set('html', 'Register');
+
+            //Set the popup window title
+            $('site_popup_title').set('html', 'Register');
+
+            //Show popup register wrapper
             $('popup_register_wrapper').setStyle('display', 'block');
             $('popup_register_wrapper').setStyle('opacity', 1);
         });

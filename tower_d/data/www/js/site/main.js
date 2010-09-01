@@ -96,7 +96,17 @@ function toggle_popup_window(){
         //Remove escape key event
         window.addEvent('escape_key', popup_site_close_key_func); 
     }
+}
 
+/* --------------------------------------
+ * Hide popup windows
+ * --------------------------------------*/
+function hide_popup_windows(){
+    var popup_wrappers = $$('.popup_window_item');
+    for(var i=popup_wrappers.length-1; i>=0; i--){
+        popup_wrappers[i].setStyle('display', 'none');
+        popup_wrappers[i].setStyle('opacity', 0);
+    }
 }
 /*===========================================================================
 
