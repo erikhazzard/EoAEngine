@@ -3,6 +3,12 @@
     ------------
     Handles server specific settings.  Also contains state-specific settings
 ============================================================================='''
+#Cache Setup
+#----------------------------------------
+CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+CACHE_MIDDLEWARE_SECONDS = 60 * 15
+CACHE_MIDDLEWARE_KEY_PREFIX = 'eoa'
+
 #Debug settings
 #----------------------------------------
 DEBUG = True
@@ -14,7 +20,11 @@ TEMPLATE_DEBUG = DEBUG
 import os
 TOWER_D_ROOT_URL = '/tower_d/'
 ROOT_URL = 'game'
-TOWER_D_PATH = '/home/erik/Code/EoAEngine'
+#TOWER_D_PATH = '/home/erik/Code/EoAEngine'
+parent_directory = os.getcwd().split('/')[:-1] 
+parent_directory = '/'.join(parent_directory)
+TOWER_D_PATH = parent_directory
+
 ROOT_PATH = os.path.join(TOWER_D_PATH, 'tower_d')
 
 #Set Cookie age
@@ -98,12 +108,17 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    #CACHING
+    'django.middleware.cache.UpdateCacheMiddleware',
+    #Other
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    #CACHING
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
