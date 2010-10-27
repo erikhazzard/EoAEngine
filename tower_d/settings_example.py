@@ -11,9 +11,8 @@ CACHE_MIDDLEWARE_KEY_PREFIX = 'eoa'
 
 #Debug settings
 #----------------------------------------
-DEBUG = True
+DEBUG = False 
 TEMPLATE_DEBUG = DEBUG
-
 
 #Path settings
 #----------------------------------------
@@ -23,8 +22,7 @@ ROOT_URL = 'game'
 #TOWER_D_PATH = '/home/erik/Code/EoAEngine'
 parent_directory = os.getcwd().split('/')[:-1] 
 parent_directory = '/'.join(parent_directory)
-TOWER_D_PATH = parent_directory
-
+TOWER_D_PATH = '/home/erik/Code/EoAEngine/' 
 ROOT_PATH = os.path.join(TOWER_D_PATH, 'tower_d')
 
 #Set Cookie age
