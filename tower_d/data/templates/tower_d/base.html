@@ -8,10 +8,10 @@
  
     <!-- ========= CSS ==================================================== -->
     <!-- Third Party -->
-    <link href='/tower_d/static/css/third_party/mootools_roar.css' rel='stylesheet' type='text/css' />
+    <link href='/static/tower_d/css/third_party/mootools_roar.css' rel='stylesheet' type='text/css' />
 
     <!-- Tower D CSS -->
-	<link href='/tower_d/static/css/site.css' rel='stylesheet' type='text/css' />
+	<link href='/static/tower_d/css/site.css' rel='stylesheet' type='text/css' />
     
 
     {% block extra_head_css %}{% endblock extra_head_css %}
@@ -163,13 +163,13 @@
                             <div id='popup_login_third_party_wrapper'>
                                 <h2>Login Using</h2>
                                 <a href='#' id='popup_login_third_party_google' title='Login with Google'>
-                                    <img src='/tower_d/static/images/layout/google.png' alt='Google' /> 
+                                    <img src='/static/tower_d/images/layout/google.png' alt='Google' /> 
                                 </a>
                                 <a href='#' id='popup_login_third_party_twitter' title='Login with Twitter'>
-                                    <img src='/tower_d/static/images/layout/twitter.png' alt='Twitter' /> 
+                                    <img src='/static/tower_d/images/layout/twitter.png' alt='Twitter' /> 
                                 </a>
                                 <a href='#' id='popup_login_third_party_facebook' title='Login with Facebook'>
-                                    <img src='/tower_d/static/images/layout/facebook.png' alt='Facebook' /> 
+                                    <img src='/static/tower_d/images/layout/facebook.png' alt='Facebook' /> 
                                 </a>
                             </div>
                         </div>
@@ -209,9 +209,9 @@
     <script type='text/javascript'>
         google.load('mootools', '1.2.4');
     </script>
-	<script src='/tower_d/static/js/third_party/mootools_more.js' 
+	<script src='/static/tower_d/js/third_party/mootools_more.js' 
             type='text/javascript'></script>
-	<script src='/tower_d/static/js/third_party/mootools_roar.js' 
+	<script src='/static/tower_d/js/third_party/mootools_roar.js' 
             type='text/javascript'></script>
 
     <!-- EoA Javascript ------------------------------------------------------>
@@ -219,12 +219,12 @@
     <script src='{% url js_config %}' type='text/javascript'></script>
 
     <!-- Main - Base Javascript -->
-    <script src='/tower_d/static/js/site/main.js' type='text/javascript'></script>
+    <script src='/static/tower_d/js/site/main.js' type='text/javascript'></script>
 
     <!-- Login -->
-    <script src='/tower_d/static/js/site/login.js' type='text/javascript'></script>
+    <script src='/static/tower_d/js/site/login.js' type='text/javascript'></script>
     <!-- Register -->
-    <script src='/tower_d/static/js/site/register.js' type='text/javascript'></script>
+    <script src='/static/tower_d/js/site/register.js' type='text/javascript'></script>
 {% block bottom_javascript %}
 
 {% endblock %}

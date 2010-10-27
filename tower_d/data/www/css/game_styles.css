@@ -95,7 +95,7 @@
         /*The background is a map passed in.  This will be
             procedurally generated. Width and height are defined 
             in #game_world */
-        background:#225577 url(/tower_d/static/images/maps/map_1.png);
+        background:#225577 url(../images/maps/map_1.png);
         height:100%;
         left:0;
         position:absolute;
@@ -116,7 +116,7 @@
             width:608px;
         }
                 #grid_display_container {
-                    background:#225588 url(/tower_d/static/images/maps/cell_bg_24_24.png);
+                    background:#225588 url(../images/maps/cell_bg_24_24.png);
                     height:448px;
                     left:0;
                     position:absolute;
@@ -205,7 +205,7 @@
  *
  *==========================================================================*/
 .creep_base {
-    background:url('/tower_d/static/images/creeps/slime.png') no-repeat;
+    background:url('../images/creeps/slime.png') no-repeat;
     cursor:pointer;
     height:0;
     left:0px;
@@ -226,13 +226,13 @@
         width:20px;
     }
         .effect_icon_dark {
-            background:url('/tower_d/static/images/icons/dark_icon.png');
+            background:url('../images/icons/dark_icon.png');
         }
         .effect_icon_earth {
-            background:url('/tower_d/static/images/icons/earth_icon.png');
+            background:url('../images/icons/earth_icon.png');
         }
         .effect_icon_wind {
-            background:url('/tower_d/static/images/icons/dark_icon.png');
+            background:url('../images/icons/dark_icon.png');
         }
 
 
